@@ -1,3 +1,6 @@
+import constants from '../constants'
+// constants.ACTIONNAME <= match with action.type for reducer switch statement
+
 const initialState = {
 
 }
