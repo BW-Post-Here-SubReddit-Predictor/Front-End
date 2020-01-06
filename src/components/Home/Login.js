@@ -66,6 +66,11 @@ const Login = (props) => {
                     required
                 />
             </div> */}
+
+            {
+                !!spinner && <h1>It's spinning!</h1>
+            }
+            {/* renders whenever spinner is true */}
             <div>
                 <label htmlFor='password'>Password</label>
                 <input 
