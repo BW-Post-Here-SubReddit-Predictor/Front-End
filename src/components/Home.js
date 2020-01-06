@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Login from './Login';
-import Register from './Register';
+import Login from './Home/Login';
+import Register from './Home/Register';
 
 
 //temporary styles
