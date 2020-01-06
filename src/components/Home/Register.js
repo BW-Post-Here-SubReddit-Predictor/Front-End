@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 // import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom'; 
-
+import { useHistory } from 'react-router-dom'
 
 const Register = (props) => {
     const [credentials, setCredentials] = useState({
@@ -10,8 +9,11 @@ const Register = (props) => {
         email: 'email',
         password: ''
     });
-    const history = useHistory(); 
-    
+    const [isRegistering, setIsRegistering] = useState(false)
+    const [isRedirecting, setIsRedirecting] = useState(false)
+
+    const history = useHistory()
+
     const changeHandler = e => {
         setCredentials({
             ...credentials,
@@ -21,11 +23,24 @@ const Register = (props) => {
     const submitRegister = e => {
         e.preventDefault();
         console.log('input in submit', credentials)
+        setIsRegistering(true)
+
         axiosWithAuth()
             .post('/auth/register', credentials)
             .then(res => {
+                setIsRegistering(false)
+                setIsRedirecting(true)
                 console.log('Register Submit', res)
-                history.push('/Feed')
+                axiosWithAuth().post('/auth/login', { username: credentials.username, password: credentials.password })
+                    .then( res => {
+                        setIsRedirecting(false)
+                        console.log('nested login successful', res.data.message)
+                        localStorage.setItem('token', res.data.token)
+                        history.push('/Feed')
+                    })
+                    .catch( err => {
+                        console.log(err)
+                    })
             })
             .catch(err => console.log('Registration Error', err))
     }
