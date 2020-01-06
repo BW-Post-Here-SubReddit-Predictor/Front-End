@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 import LogoHeader from "./LogoHeader";
+
+import { storeLogin } from '../../redux/actions'
 
 const StyledTextInput = Styled.input`
     border-left-width: 0px;
