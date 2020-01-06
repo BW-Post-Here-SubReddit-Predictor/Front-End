@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Styled from 'styled-components';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 import LogoHeader from "./LogoHeader";
