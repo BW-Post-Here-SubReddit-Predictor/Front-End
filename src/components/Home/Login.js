@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Styled from 'styled-components';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 import LogoHeader from "./LogoHeader";
@@ -87,8 +87,8 @@ const Login = (props) => {
                 setSpinner(false)
                 console.log(res);
                 localStorage.setItem('token', res.data.token)
-                console.log(res.data.id);
-                storeLogin(res.data.id)
+
+                props.storeLogin(res.data.id)
                 history.push('/Feed'); 
 
                 
