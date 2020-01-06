@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 
 
@@ -9,6 +9,9 @@ const Login = (props) => {
         username:'',
         password: ''
     });
+    const [spinner, setSpinner] = useState(false); 
+    const history = useHistory();
+
     const changeHandler = e => {
         setInput({
             ...input,
@@ -18,15 +21,21 @@ const Login = (props) => {
     const submitLogin = e => {
         console.log('props', props)
         e.preventDefault();
-        props.loginUser(input, props);
-
-        axiosWithAuth().post('')
+       // props.loginUser(input, props);
+        setSpinner(true)
+        console.log('props', props);
+        console.log('spinner state', spinner);  
+        axiosWithAuth().post('/auth/login', input)
             .then( res => {
-                localStorage.setItem('token', res.data.payload)
+                console.log(res);
+                localStorage.setItem('token', res.data.token)
+                history.push('/Feed'); 
+                setSpinner(false)
             })
             .catch( err => {
                 console.log(err)
             })
+            
 
     }
     return (

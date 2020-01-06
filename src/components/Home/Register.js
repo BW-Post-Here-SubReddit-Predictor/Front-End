@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 // import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom'; 
 
 
 const Register = (props) => {
@@ -9,6 +10,8 @@ const Register = (props) => {
         email: 'email',
         password: ''
     });
+    const history = useHistory(); 
+    
     const changeHandler = e => {
         setCredentials({
             ...credentials,
@@ -19,10 +22,10 @@ const Register = (props) => {
         e.preventDefault();
         console.log('input in submit', credentials)
         axiosWithAuth()
-            .post('/register', credentials)
+            .post('/auth/register', credentials)
             .then(res => {
                 console.log('Register Submit', res)
-                props.history.push('/') // login
+                history.push('/Feed')
             })
             .catch(err => console.log('Registration Error', err))
     }
