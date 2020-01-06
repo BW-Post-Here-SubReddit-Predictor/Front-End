@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-// import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
-
+import { connect } from 'react-redux'; 
+import { storeLogin } from '../../redux/actions'
 
 const Login = (props) => {
     const [input, setInput] = useState({
@@ -30,7 +30,10 @@ const Login = (props) => {
                 setSpinner(false)
                 console.log(res);
                 localStorage.setItem('token', res.data.token)
+                console.log(res.data.id);
+                storeLogin(res.data.id)
                 history.push('/Feed'); 
+
                 
             })
             .catch( err => {
@@ -81,4 +84,11 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+const mapStateToProps = () => { 
+    return {
+    }
+}
+export default connect(
+    mapStateToProps, 
+    {storeLogin}
+)(Login);

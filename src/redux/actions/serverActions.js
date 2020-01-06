@@ -14,6 +14,10 @@ export const getUserPosts = (userID) => (dispatch) => {
     })
 }
 
+export const storeLogin = (userId) =>  { 
+  console.log("userId ", userId); 
+  return {type: constants.STORE_LOGIN, payload: userId}
+}
 export const getAllPosts = () => dispatch => {
 
   axiosWithAuth().get('/posts')

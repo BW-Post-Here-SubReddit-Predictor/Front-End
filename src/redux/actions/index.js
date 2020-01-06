@@ -1,9 +1,11 @@
 import {
   getUserPosts,
-  getAllPosts
+  getAllPosts,
+  storeLogin
 } from './serverActions'
 
 export {
   getUserPosts,
-  getAllPosts
+  getAllPosts,
+  storeLogin
 }
