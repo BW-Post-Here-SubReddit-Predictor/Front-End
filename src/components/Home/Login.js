@@ -27,10 +27,11 @@ const Login = (props) => {
         console.log('spinner state', spinner);  
         axiosWithAuth().post('/auth/login', input)
             .then( res => {
+                setSpinner(false)
                 console.log(res);
                 localStorage.setItem('token', res.data.token)
                 history.push('/Feed'); 
-                setSpinner(false)
+                
             })
             .catch( err => {
                 console.log(err)
@@ -65,6 +66,11 @@ const Login = (props) => {
                     required
                 />
             </div> */}
+
+            {
+                !!spinner && <h1>It's spinning!</h1>
+            }
+            {/* renders whenever spinner is true */}
             <div>
                 <label htmlFor='password'>Password</label>
                 <input 

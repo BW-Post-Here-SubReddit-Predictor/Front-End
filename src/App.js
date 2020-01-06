@@ -3,7 +3,7 @@ import React from 'react';
 //Routing
 import { Route, Link, Switch } from 'react-router-dom';
 import { PrivateRoute } from './helpers/PrivateRoute'
-import Home from './components/Home/Home';
+import Home from './components/Home';
 //Styling
 import './App.css';
 //Components
