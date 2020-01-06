@@ -9,14 +9,10 @@ const Register = (props) => {
         email: 'email',
         password: ''
     });
-<<<<<<< HEAD
-    const history = useHistory(); 
-=======
     const [isRegistering, setIsRegistering] = useState(false)
     const [isRedirecting, setIsRedirecting] = useState(false)
 
     const history = useHistory()
->>>>>>> c77858d5f31fe897395476df6d87ada6a1eaa4c5
 
     const changeHandler = e => {
         setCredentials({
@@ -35,21 +31,8 @@ const Register = (props) => {
                 setIsRegistering(false)
                 setIsRedirecting(true)
                 console.log('Register Submit', res)
-<<<<<<< HEAD
                 
                 history.push('/Feed')
-=======
-                axiosWithAuth().post('/auth/login', { username: credentials.username, password: credentials.password })
-                    .then( res => {
-                        setIsRedirecting(false)
-                        console.log('nested login successful', res.data.message)
-                        localStorage.setItem('token', res.data.token)
-                        history.push('/Feed')
-                    })
-                    .catch( err => {
-                        console.log(err)
-                    })
->>>>>>> c77858d5f31fe897395476df6d87ada6a1eaa4c5
             })
             .catch(err => console.log('Registration Error', err))
     }
