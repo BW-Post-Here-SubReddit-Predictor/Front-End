@@ -21,6 +21,7 @@ const FormContainer = Styled.div`
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: auto;
     background-color: white;
     width: 440px;
     padding-top: 30px;
