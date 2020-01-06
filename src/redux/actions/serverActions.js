@@ -24,3 +24,4 @@ export const getAllPosts = () => dispatch => {
       console.log(err)
     })
 }
+
