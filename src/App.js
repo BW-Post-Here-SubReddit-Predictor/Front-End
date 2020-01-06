@@ -9,6 +9,7 @@ import './App.css';
 //Components
 import PostHere from './components/PostHere'; 
 import SavedPosts from './components/SavedPosts'
+import ErrorPage from './components/ErrorPage'
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
       <Link to='/Feed'>Feed</Link>
       <Route exact path='/' component={Home} />
       <Route exact path='/Feed' component={PostHere}/> 
+      <Route path='/Error' component={ErrorPage} />
       {/* Private Routes */}
-      <PrivateRoute path='/savedposts' component={SavedPosts} />
+      <PrivateRoute path='/Savedposts' component={SavedPosts} />
     </div>
   );
 }
