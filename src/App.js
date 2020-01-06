@@ -4,6 +4,7 @@ import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import { PrivateRoute } from './helpers/PrivateRoute'
 import Home from './components/Home';
+import Register from './components/Home/Register';
 //Styling
 import './App.css';
 //Components
@@ -13,8 +14,8 @@ import SavedPosts from './components/SavedPosts'
 function App() {
   return (
     <div className="App">
-      <Link to='/Feed'>Feed</Link>
       <Route exact path='/' component={Home} />
+      <Route exact path='/register' component={Register} />
       <Route exact path='/Feed' component={PostHere}/> 
       {/* Private Routes */}
       <PrivateRoute path='/savedposts' component={SavedPosts} />

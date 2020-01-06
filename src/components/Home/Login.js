@@ -1,8 +1,62 @@
 import React, { useState } from 'react';
+import Styled from 'styled-components';
 // import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
+import LogoHeader from "./LogoHeader";
 
+const StyledTextInput = Styled.input`
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom: 1px solid #FB2D08;
+    outline: none;
+    margin-bottom: 10px;
+    font-size: 20px;
+    padding-bottom: 5px;
+    width: 100%;
+`;
+
+const FormContainer = Styled.div`
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    width: 440px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: left;
+`;
+
+const FormHeader = Styled.div`
+    font-Weight: bold;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+`;
+
+const FormButtonContainer = Styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+`;
+
+const FormButton = Styled.button`
+    box-sizing: border-box;
+    background-color: #0067b8;
+    color: white;
+    width: 110px;
+    height: 45px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+`;
+
+const NotRegisteredMessage = Styled.div`
+    margin-top: 10px;
+`;
 
 const Login = (props) => {
     const [input, setInput] = useState({
@@ -40,43 +94,42 @@ const Login = (props) => {
 
     }
     return (
-        <div>
-        <form onSubmit={ submitLogin }>
-            <div>
-                <label htmlFor='user-name'>Username</label>
-                <input 
+        <FormContainer>
+            <LogoHeader />
+            <FormHeader>Login</FormHeader>
+            <form onSubmit={ submitLogin }>
+                <div>
+                    <StyledTextInput 
+                        type='text' 
+                        placeholder='Username' 
+                        name='username' 
+                        value={props.username} 
+                        onChange={changeHandler}
+                        required
+                    />
+                </div>
 
-                    type='text' 
-                    placeholder='username' 
-                    name='username' 
-                    value={props.username} 
-                    onChange={changeHandler}
-                    required
-                />
-            </div>
-
-            {
-                !!spinner && <h1>It's spinning!</h1>
-            }
-            {/* renders whenever spinner is true */}
-            <div>
-                <label htmlFor='password'>Password</label>
-                <input 
-
-                    type='password' 
-                    placeholder='password' 
-                    name='password' 
-                    value={props.password}
-                    onChange={changeHandler}
-                    required
-                />
-            </div>
-            <button>Login</button>
-        </form>
-        <button>
-                <Link to={'/register'}>Not a member? Click here!</Link>
-        </button>
-    </div>
+                {
+                    !!spinner && <h1>It's spinning!</h1>
+                }
+                {/* renders whenever spinner is true */}
+                <div>
+                    <StyledTextInput 
+                        type='password' 
+                        placeholder='Password' 
+                        name='password' 
+                        value={props.password}
+                        onChange={changeHandler}
+                        required
+                    />
+                </div>
+                <NotRegisteredMessage>Not registered? <Link to="/register">Create an account!</Link></NotRegisteredMessage>
+                <FormButtonContainer>
+                    <FormButton>Login</FormButton>
+                </FormButtonContainer>
+            </form>
+            
+        </FormContainer>
     )
 }
 
