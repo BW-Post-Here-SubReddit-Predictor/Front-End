@@ -3,7 +3,8 @@ import constants from '../constants'
 const initialState = {
   isFetchingUserPosts: false,
   isFetchingUserPostsError: null,
-  userPosts: []
+  userPosts: [],
+  userId: "",
 }
 
 export const serverReducer = (state = initialState, { type, payload }) => {
@@ -25,6 +26,12 @@ export const serverReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         userPosts: payload
+      }
+    case constants.STORE_LOGIN: 
+      return {
+        ...state, 
+        userId: payload
+        
       }
 
     default: 

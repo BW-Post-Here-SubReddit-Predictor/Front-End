@@ -13,7 +13,8 @@ const SavedPosts = props => {
 
 
   useEffect(() => {
-    props.getAllPosts()
+    //props.getAllPosts()
+    props.getUserPosts(1)
   },[])
 
   return (
