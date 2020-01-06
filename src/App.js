@@ -16,6 +16,7 @@ function App() {
       <Link to='/Feed'>Feed</Link>
       <Route exact path='/' component={Home} />
       <Route exact path='/Feed' component={PostHere}/> 
+      {/* Private Routes */}
       <PrivateRoute path='/savedposts' component={SavedPosts} />
     </div>
   );
