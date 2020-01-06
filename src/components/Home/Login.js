@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-// import { axiosWithAuth } from '../../helpers/axiosWithAuth';
+import { Link, useHistory } from 'react-router-dom';
+import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 
 
 const Login = (props) => {
@@ -9,6 +9,9 @@ const Login = (props) => {
         username:'',
         password: ''
     });
+    const [spinner, setSpinner] = useState(false); 
+    const history = useHistory();
+
     const changeHandler = e => {
         setInput({
             ...input,
@@ -18,7 +21,24 @@ const Login = (props) => {
     const submitLogin = e => {
         console.log('props', props)
         e.preventDefault();
-        props.loginUser(input, props);
+       // props.loginUser(input, props);
+        setSpinner(true)
+        console.log('props', props);
+        console.log('spinner state', spinner);  
+        axiosWithAuth().post('/auth/login', input)
+            .then( res => {
+                setSpinner(false)
+                console.log(res);
+                localStorage.setItem('token', res.data.token)
+                history.push('/Feed'); 
+                
+            })
+            .catch( err => {
+                console.log(err)
+                history.push('/Error')
+            })
+            
+
     }
     return (
         <div>
@@ -26,7 +46,7 @@ const Login = (props) => {
             <div>
                 <label htmlFor='user-name'>Username</label>
                 <input 
-                    id='username' 
+
                     type='text' 
                     placeholder='username' 
                     name='username' 
@@ -35,22 +55,15 @@ const Login = (props) => {
                     required
                 />
             </div>
-            {/* <div>
-                <label htmlFor='email'>Email</label>
-                <input 
-                    id='email' 
-                    type='email' 
-                    placeholder='email' 
-                    name='email' 
-                    value={props.email}
-                    onChange={changeHandler}
-                    required
-                />
-            </div> */}
+
+            {
+                !!spinner && <h1>It's spinning!</h1>
+            }
+            {/* renders whenever spinner is true */}
             <div>
                 <label htmlFor='password'>Password</label>
                 <input 
-                    id='password' 
+
                     type='password' 
                     placeholder='password' 
                     name='password' 
@@ -67,16 +80,5 @@ const Login = (props) => {
     </div>
     )
 }
-// const mapStateToProps = state => {
-//     console.log('map state for login', state)
-//     return {
-//         credentials: {
-//             username: state.credentials.username,
-//             password: state.credentials.password
-//         }
-//     }
-// }
-
-// export default connect(mapStateToProps, { loginUser })(Login);
 
 export default Login;

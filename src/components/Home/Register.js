@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 // import { connect } from 'react-redux';
-
+import { useHistory } from 'react-router-dom'
 
 const Register = (props) => {
     const [credentials, setCredentials] = useState({
@@ -9,6 +9,11 @@ const Register = (props) => {
         email: 'email',
         password: ''
     });
+    const [isRegistering, setIsRegistering] = useState(false)
+    const [isRedirecting, setIsRedirecting] = useState(false)
+
+    const history = useHistory()
+
     const changeHandler = e => {
         setCredentials({
             ...credentials,
@@ -18,16 +23,30 @@ const Register = (props) => {
     const submitRegister = e => {
         e.preventDefault();
         console.log('input in submit', credentials)
+        setIsRegistering(true)
+
         axiosWithAuth()
-            .post('/register', credentials)
+            .post('/auth/register', credentials)
             .then(res => {
+                setIsRegistering(false)
+                setIsRedirecting(true)
                 console.log('Register Submit', res)
-                localStorage.setItem('username', res.data.username)
-                localStorage.setItem('password', res.data.username)
-                localStorage.setItem('email', res.data.username)
-                props.history.push('/')
+                axiosWithAuth().post('/auth/login', { username: credentials.username, password: credentials.password })
+                    .then( res => {
+                        setIsRedirecting(false)
+                        console.log('nested login successful', res.data.message)
+                        localStorage.setItem('token', res.data.token)
+                        history.push('/Feed')
+                    })
+                    .catch( err => {
+                        console.log(err)
+                        history.push('/Error')
+                    })
             })
-            .catch(err => console.log('Registration Error', err))
+            .catch(err => {
+                console.log('Registration Error', err)
+                history.push('/Error')
+            })
     }
     return (
         <div>
@@ -35,7 +54,7 @@ const Register = (props) => {
                 <div>
                     <label htmlFor='user-name'>Username</label>
                     <input 
-                        id='username' 
+
                         type='text' 
                         placeholder='username' 
                         name='username' 
@@ -47,7 +66,7 @@ const Register = (props) => {
                 <div>
                     <label htmlFor='email'>Email</label>
                     <input 
-                        id='email' 
+
                         type='email' 
                         placeholder='email' 
                         name='email' 
@@ -59,7 +78,7 @@ const Register = (props) => {
                 <div>
                     <label htmlFor='password'>Password</label>
                     <input 
-                        id='password' 
+
                         type='password' 
                         placeholder='password' 
                         name='password' 
