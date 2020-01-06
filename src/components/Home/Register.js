@@ -40,9 +40,13 @@ const Register = (props) => {
                     })
                     .catch( err => {
                         console.log(err)
+                        history.push('/Error')
                     })
             })
-            .catch(err => console.log('Registration Error', err))
+            .catch(err => {
+                console.log('Registration Error', err)
+                history.push('/Error')
+            })
     }
     return (
         <div>
@@ -50,7 +54,7 @@ const Register = (props) => {
                 <div>
                     <label htmlFor='user-name'>Username</label>
                     <input 
-                        id='username' 
+
                         type='text' 
                         placeholder='username' 
                         name='username' 
@@ -62,7 +66,7 @@ const Register = (props) => {
                 <div>
                     <label htmlFor='email'>Email</label>
                     <input 
-                        id='email' 
+
                         type='email' 
                         placeholder='email' 
                         name='email' 
@@ -74,7 +78,7 @@ const Register = (props) => {
                 <div>
                     <label htmlFor='password'>Password</label>
                     <input 
-                        id='password' 
+
                         type='password' 
                         placeholder='password' 
                         name='password' 

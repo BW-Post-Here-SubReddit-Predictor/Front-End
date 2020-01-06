@@ -35,6 +35,7 @@ const Login = (props) => {
             })
             .catch( err => {
                 console.log(err)
+                history.push('/Error')
             })
             
 
@@ -45,7 +46,7 @@ const Login = (props) => {
             <div>
                 <label htmlFor='user-name'>Username</label>
                 <input 
-                    id='username' 
+
                     type='text' 
                     placeholder='username' 
                     name='username' 
@@ -54,18 +55,6 @@ const Login = (props) => {
                     required
                 />
             </div>
-            {/* <div>
-                <label htmlFor='email'>Email</label>
-                <input 
-                    id='email' 
-                    type='email' 
-                    placeholder='email' 
-                    name='email' 
-                    value={props.email}
-                    onChange={changeHandler}
-                    required
-                />
-            </div> */}
 
             {
                 !!spinner && <h1>It's spinning!</h1>
@@ -74,7 +63,7 @@ const Login = (props) => {
             <div>
                 <label htmlFor='password'>Password</label>
                 <input 
-                    id='password' 
+
                     type='password' 
                     placeholder='password' 
                     name='password' 
