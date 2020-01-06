@@ -31,8 +31,16 @@ const Register = (props) => {
                 setIsRegistering(false)
                 setIsRedirecting(true)
                 console.log('Register Submit', res)
-                
-                history.push('/Feed')
+                axiosWithAuth().post('/auth/login', { username: credentials.username, password: credentials.password })
+                    .then( res => {
+                        setIsRedirecting(false)
+                        console.log('nested login successful', res.data.message)
+                        localStorage.setItem('token', res.data.token)
+                        history.push('/Feed')
+                    })
+                    .catch( err => {
+                        console.log(err)
+                    })
             })
             .catch(err => console.log('Registration Error', err))
     }
