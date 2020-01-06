@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import { axiosWithAuth } from '../../helpers/axiosWithAuth';
+import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 
 
 const Login = (props) => {
@@ -19,6 +19,15 @@ const Login = (props) => {
         console.log('props', props)
         e.preventDefault();
         props.loginUser(input, props);
+
+        axiosWithAuth().post('')
+            .then( res => {
+                localStorage.setItem('token', res.data.payload)
+            })
+            .catch( err => {
+                console.log(err)
+            })
+
     }
     return (
         <div>
@@ -67,16 +76,5 @@ const Login = (props) => {
     </div>
     )
 }
-// const mapStateToProps = state => {
-//     console.log('map state for login', state)
-//     return {
-//         credentials: {
-//             username: state.credentials.username,
-//             password: state.credentials.password
-//         }
-//     }
-// }
-
-// export default connect(mapStateToProps, { loginUser })(Login);
 
 export default Login;
