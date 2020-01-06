@@ -4,6 +4,7 @@ import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import { PrivateRoute } from './helpers/PrivateRoute'
 import Home from './components/Home';
+import Register from './components/Home/Register';
 //Styling
 import './App.css';
 //Components
@@ -15,8 +16,11 @@ import SideNav from './components/SideNav';
 function App() {
   return (
     <div className="App">
+
       <SideNav />
+
       <Route exact path='/' component={Home} />
+      <Route exact path='/register' component={Register} />
       <Route exact path='/Feed' component={PostHere}/> 
       <Route path='/Error' component={ErrorPage} />
       {/* Private Routes */}

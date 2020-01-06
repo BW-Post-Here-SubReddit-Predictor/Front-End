@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import Login from './Home/Login';
 import Register from './Home/Register';
 
@@ -20,9 +20,8 @@ const registerCard = {
 
 const Home = () => {
     return(
-        <div style={homeAnimation} className='home-animation'> Welcome!    
+        <div>   
             <Login style={loginCard} />
-            <Register style={registerCard} />
         </div>
     )
 }
