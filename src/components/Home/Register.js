@@ -22,10 +22,7 @@ const Register = (props) => {
             .post('/register', credentials)
             .then(res => {
                 console.log('Register Submit', res)
-                localStorage.setItem('username', res.data.username)
-                localStorage.setItem('password', res.data.username)
-                localStorage.setItem('email', res.data.username)
-                props.history.push('/')
+                props.history.push('/') // login
             })
             .catch(err => console.log('Registration Error', err))
     }
