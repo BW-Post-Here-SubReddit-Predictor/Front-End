@@ -84,11 +84,15 @@ const Login = (props) => {
                 setSpinner(false)
                 console.log(res);
                 localStorage.setItem('token', res.data.token)
+                console.log(res.data.id);
+                storeLogin(res.data.id)
                 history.push('/Feed'); 
+
                 
             })
             .catch( err => {
                 console.log(err)
+                history.push('/Error')
             })
             
 
@@ -133,4 +137,11 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+const mapStateToProps = () => { 
+    return {
+    }
+}
+export default connect(
+    mapStateToProps, 
+    {storeLogin}
+)(Login);

@@ -9,16 +9,20 @@ import Register from './components/Home/Register';
 import './App.css';
 //Components
 import PostHere from './components/PostHere'; 
-import SavedPosts from './components/SavedPosts'
+import SavedPosts from './components/SavedPosts';
+import ErrorPage from './components/ErrorPage';
+import SideNav from './components/SideNav';
 
 function App() {
   return (
     <div className="App">
+      <SideNav />
       <Route exact path='/' component={Home} />
       <Route exact path='/register' component={Register} />
       <Route exact path='/Feed' component={PostHere}/> 
+      <Route path='/Error' component={ErrorPage} />
       {/* Private Routes */}
-      <PrivateRoute path='/savedposts' component={SavedPosts} />
+      <PrivateRoute path='/Savedposts' component={SavedPosts} />
     </div>
   );
 }
