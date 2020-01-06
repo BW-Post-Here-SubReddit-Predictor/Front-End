@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+
 import Styled from 'styled-components';
 // import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 import LogoHeader from "./LogoHeader";
+
+import { storeLogin } from '../../redux/actions'
 
 const StyledTextInput = Styled.input`
     border-left-width: 0px;
@@ -84,11 +87,15 @@ const Login = (props) => {
                 setSpinner(false)
                 console.log(res);
                 localStorage.setItem('token', res.data.token)
+                console.log(res.data.id);
+                storeLogin(res.data.id)
                 history.push('/Feed'); 
+
                 
             })
             .catch( err => {
                 console.log(err)
+                history.push('/Error')
             })
             
 
@@ -133,4 +140,11 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+const mapStateToProps = () => { 
+    return {
+    }
+}
+export default connect(
+    mapStateToProps, 
+    {storeLogin}
+)(Login);

@@ -91,9 +91,13 @@ const Register = (props) => {
                     })
                     .catch( err => {
                         console.log(err)
+                        history.push('/Error')
                     })
             })
-            .catch(err => console.log('Registration Error', err))
+            .catch(err => {
+                console.log('Registration Error', err)
+                history.push('/Error')
+            })
     }
     return (
         <FormContainer>
