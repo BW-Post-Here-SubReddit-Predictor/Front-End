@@ -25,7 +25,6 @@ const Register = (props) => {
             .post('/auth/register', credentials)
             .then(res => {
                 console.log('Register Submit', res)
-               
                 history.push('/Feed')
             })
             .catch(err => console.log('Registration Error', err))
