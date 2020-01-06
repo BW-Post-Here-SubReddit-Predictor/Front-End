@@ -87,8 +87,8 @@ const Login = (props) => {
                 setSpinner(false)
                 console.log(res);
                 localStorage.setItem('token', res.data.token)
-                console.log(res.data.id);
-                storeLogin(res.data.id)
+
+                props.storeLogin(res.data.id)
                 history.push('/Feed'); 
 
                 
