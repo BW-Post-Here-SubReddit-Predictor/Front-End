@@ -11,7 +11,7 @@ const Register = (props) => {
         password: ''
     });
     const history = useHistory(); 
-    
+
     const changeHandler = e => {
         setCredentials({
             ...credentials,
@@ -25,12 +25,8 @@ const Register = (props) => {
             .post('/auth/register', credentials)
             .then(res => {
                 console.log('Register Submit', res)
-<<<<<<< HEAD
-               
+                
                 history.push('/Feed')
-=======
-                props.history.push('/') // login
->>>>>>> d3cfa5ac2db4a2c28b96e4d9b4e9c06a30515c66
             })
             .catch(err => console.log('Registration Error', err))
     }
