@@ -1,13 +1,20 @@
 //React
-import React from 'react'
+import React, { useEffect } from 'react'
 
 //Components
 import UserPosts from './SavedPosts/UserPosts'
 
 //Actions
-import { getAllPosts } from '../redux/actions'
+import { getAllPosts, getUserPosts } from '../redux/actions'
+
+import { connect } from 'react-redux'; 
 
 const SavedPosts = props => {
+
+
+  useEffect(() => {
+    props.getAllPosts()
+  },[])
 
   return (
     <>
@@ -15,3 +22,12 @@ const SavedPosts = props => {
     </>
   )
 }
+const mapStateToProps = state => { 
+  return { 
+
+  }
+}
+
+export default connect(mapStateToProps, 
+  {getAllPosts, getUserPosts}
+)(SavedPosts)   
