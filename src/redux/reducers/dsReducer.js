@@ -17,6 +17,12 @@ export const dsReducer = (state = initialState, {type, payload}) => {
         post: payload
       }
 
+    case constants.SAVE_DS_RESPONSE:
+      return {
+        ...state,
+        subreddit: payload
+      }
+
     default:
       return state
   }

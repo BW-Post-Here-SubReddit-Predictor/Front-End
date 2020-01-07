@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import { setPost } from '../../redux/actions'
 
+
+
 function PostResponse(props) {
 
   return (
@@ -22,8 +24,8 @@ function PostResponse(props) {
 const mapStateToProps = ({ dsReducer }) => {
 
   return {
-    response: dsReducer.subreddit,
-    post: dsReducer.post
+    response: dsReducer.subreddit, // props.response
+    post: dsReducer.post // props.post
   }
 }
 
