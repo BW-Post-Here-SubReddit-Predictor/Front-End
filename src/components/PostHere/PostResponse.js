@@ -21,13 +21,13 @@ function PostResponse(props) {
       post: props.post.post_body,
       subreddits: props.response
     }
-    console.log('hi')
+
     setRenderedPosts([
       ...renderedPosts,
       newPost
     ])
   }, [props.post])
-  console.log(props.response);
+
   return (
     <div>
       {renderedPosts.map((item, index) => {
