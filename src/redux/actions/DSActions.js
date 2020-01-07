@@ -8,3 +8,10 @@ export const setPost = (post) => { // locally tracking user's post
     payload: post
   }
 }
+
+export const saveDSResponse = (list) => {
+  return {
+    type: constants.SAVE_DS_RESPONSE,
+    payload: list
+  }
+}

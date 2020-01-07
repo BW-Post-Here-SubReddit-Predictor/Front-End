@@ -4,7 +4,7 @@ import Styled from 'styled-components';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoginSpinner from '../Home/LoginSpinner';
-import { getUserPosts, savingPosts } from '../../redux/actions';
+import { getUserPosts, savingPosts, saveDSResponse, setPost } from '../../redux/actions';
 
 function PostForm(props) {
   const [input, setInput] = useState({
@@ -30,11 +30,11 @@ function PostForm(props) {
       .post('http://nlp-subreddit-predictor.herokuapp.com', input) //
       .then(res => {
         setSpinner(false)
-        console.log(res)
-        localStorage.setItem('', res.data) //
+ 
         console.log(res.data);
-        getUserPosts(res.data);
-        history.push('/user'); // 
+        props.saveDSResponse(res.data.predictions)
+        props.setPost(input)
+
       })
       .catch(err => {
         console.log(err)
@@ -69,5 +69,5 @@ const mapStateToProps = () => {
 }
 export default connect(
   mapStateToProps, 
-  {getUserPosts, savingPosts}
+  {getUserPosts, savingPosts, saveDSResponse, setPost}
 )(PostForm);

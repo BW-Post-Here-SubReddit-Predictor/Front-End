@@ -11,7 +11,8 @@ const constants = {
   //loginStore
   STORE_LOGIN: 'STORE_LOGIN', 
   //DS post
-  SET_POST: 'SET_POST'
+  SET_POST: 'SET_POST',
+  SAVE_DS_RESPONSE: 'SAVE_DS_RESPONSE'
 }
 
 export default constants
