@@ -10,6 +10,8 @@ const constants = {
   ERROR_SAVING_NEW_POST: 'ERROR_SAVING_NEW_POST',
   //loginStore
   STORE_LOGIN: 'STORE_LOGIN', 
+  //DS post
+  SET_POST: 'SET_POST'
 }
 
 export default constants

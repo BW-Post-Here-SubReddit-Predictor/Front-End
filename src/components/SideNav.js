@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import NavLogo from './SideNav/NavLogo';
 
 const NavWrapper = styled.div`
     width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     grid-column: 1;
     grid-row: 1 / 4;
@@ -28,10 +32,13 @@ const NavListItem = styled.li`
     justify-content: center;
     font-weight: bold;
     font-size: 14px;
+    border-bottom-style: solid;
+    border-width: thick;
+    border-color: #000000;
     &:hover {
         border-bottom-style: solid;
         border-width: thick;
-        border-color: #FFFF;
+        border-color: #ff6314;
     }
 `;
 
@@ -40,11 +47,13 @@ const SideNav = () => {
     return (
         <NavWrapper>
             <NavList>
-                <NavListItem>Subreddit Predictor</NavListItem>
+                <Link to='/'><NavLogo /></Link>
                 <NavListItem>
                     <Link style={{textDecoration: 'none', color:'white'}} to='/Feed'>Feed</Link>
                 </NavListItem>
-                <NavListItem>Reddit Icon</NavListItem>
+                <NavListItem>
+                    <Link style={{textDecoration: 'none', color:'white'}} to='/'>Reddit.com</Link>
+                </NavListItem>
             </NavList>
         </NavWrapper>
     )

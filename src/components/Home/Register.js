@@ -18,9 +18,7 @@ const StyledTextInput = Styled.input`
 `;
 
 const FormContainer = Styled.div`
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+
     background-color: white;
     width: 440px;
     padding-top: 30px;
@@ -102,7 +100,7 @@ const Register = (props) => {
     return (
         <FormContainer>
             <LogoHeader />
-            <FormHeader>Create Account</FormHeader>
+            <FormHeader>Register Account</FormHeader>
             <form onSubmit={ submitRegister }>
                 <div>
                     <StyledTextInput
@@ -134,6 +132,12 @@ const Register = (props) => {
                         required
                     />
                 </div>
+                <div style={{ marginTop: "10px"}}>
+                    { "Already registered? " }
+                    <a style={{ cursor: "pointer", color: "blue", textDecoration: "underline"}} onClick={ (e) => { props.setShowLogin(true)} }>
+                        Login instead.
+                    </a>
+                </div>
                 <FormButtonContainer>
                     <FormButton>Register</FormButton>
                 </FormButtonContainer>
@@ -141,15 +145,5 @@ const Register = (props) => {
         </FormContainer>
     )
 }
-// const mapStateToProps = state => {
-//     return {
-//         credentials: {
-//             username: state.credentials.username,
-//             email: state.credentials.email,
-//             passsord: state.credentials.password,
-//         }
-//     }
-// }
-// export default connect(mapStateToProps, {})(Register);
 
 export default Register;
