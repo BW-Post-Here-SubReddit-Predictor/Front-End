@@ -80,8 +80,9 @@ const Login = (props) => {
         axiosWithAuth().post('/auth/login', input)
             .then( res => {
                 setSpinner(false)
-                console.log(res);
-                localStorage.setItem('token', res.data.token)
+                console.log("authentication response", res);
+                localStorage.setItem('token', res.data.token) // auth
+                localStorage.setItem('userId', res.data.id) // differentiate users
 
                 props.storeLogin(res.data.id)
                 history.push('/Feed'); 

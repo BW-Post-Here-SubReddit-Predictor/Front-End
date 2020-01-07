@@ -9,7 +9,7 @@ const PostHere = () => {
 
     return (
         <div>
-            <h2>Post Here App</h2>
+            <h2>Create your post...</h2>
             <PostForm />
             <PostResponse />
         </div>
