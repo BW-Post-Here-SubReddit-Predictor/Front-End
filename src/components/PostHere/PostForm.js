@@ -21,17 +21,12 @@ function PostForm(props) {
     })
   }
   const submitPost = e => {
-    console.log('props', props);
     e.preventDefault();
     setSpinner(true)
-    console.log('props', props);
-    console.log('spinner state', spinner);
     axios
       .post('http://nlp-subreddit-predictor.herokuapp.com', input) //
       .then(res => {
         setSpinner(false)
- 
-        console.log(res.data);
         props.saveDSResponse(res.data.predictions)
         props.setPost(input)
 
@@ -45,6 +40,14 @@ function PostForm(props) {
     <>
       <form onSubmit={ submitPost }>
         <div>
+          <textarea
+            type='text'
+            placeholder='title'
+            name='title'
+            value={input.title}
+            onChange={changeHandler}
+            required
+          />
           <textarea
             type='text' 
             placeholder='Post here'
