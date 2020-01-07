@@ -39,7 +39,7 @@ export const savingPosts = (inputPost) => dispatch => {
     console.log('saved posts response' , res); 
   })
   .catch(err => { 
-    console.log('saved posts error', error)
+    console.log('saved posts error', err)
   })
 
 }
