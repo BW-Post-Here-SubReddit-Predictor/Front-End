@@ -29,15 +29,18 @@ export const getAllPosts = () => dispatch => {
     })
 }
 
-export const saveNewPost = (postInfo) => dispatch => {
-  dispatch({ type: constants.SAVING_NEW_POST })
-  axiosWithAuth().post('/api/posts', postInfo)
-    .then( res => {
-      console.log(res)
-      dispatch({ type: constants.SAVED_NEW_POST, payload: postInfo })
-    })
-    .catch( err => {
-      console.log(err)
-      dispatch({ type: constants.S})
-    })
+
+export const savingPosts = (inputPost) => dispatch => { 
+  
+  dispatch({type: constants.SAVING_NEW_POST})
+  axiosWithAuth().post('/posts', inputPost)
+  .then(res => { 
+    dispatch({type: constants.SAVED_NEW_POST, payload: inputPost})
+    console.log('saved posts response' , res); 
+  })
+  .catch(err => { 
+    console.log('saved posts error', error)
+  })
+
 }
+

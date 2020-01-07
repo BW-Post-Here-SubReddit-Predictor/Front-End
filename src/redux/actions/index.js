@@ -2,6 +2,8 @@ import {
   getUserPosts,
   getAllPosts,
   storeLogin,
+  savingPosts
+
 } from './serverActions'
 
 import {
@@ -12,5 +14,8 @@ export {
   getUserPosts,
   getAllPosts,
   storeLogin,
+
+  savingPosts,
   setPost
+
 }
