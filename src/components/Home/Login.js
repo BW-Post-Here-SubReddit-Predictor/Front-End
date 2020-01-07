@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-
 import Styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 import LogoHeader from "./LogoHeader";
 
@@ -21,9 +20,6 @@ const StyledTextInput = Styled.input`
 `;
 
 const FormContainer = Styled.div`
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
     background-color: white;
     width: 440px;
     padding-top: 30px;
@@ -55,10 +51,6 @@ const FormButton = Styled.button`
     text-align: center;
     cursor: pointer;
     font-size: 20px;
-`;
-
-const NotRegisteredMessage = Styled.div`
-    margin-top: 10px;
 `;
 
 const Login = (props) => {
@@ -130,7 +122,12 @@ const Login = (props) => {
                         required
                     />
                 </div>
-                <NotRegisteredMessage>Not registered? <Link to="/register">Create an account!</Link></NotRegisteredMessage>
+                <div style={{ marginTop: "10px"}}>
+                    { "Not registered? " }
+                    <a style={{ cursor: "pointer", color: "blue", textDecoration: "underline"}} onClick={ (e) => { props.setShowLogin(false)} }>
+                        Create an account!
+                    </a>
+                </div>
                 <FormButtonContainer>
                     <FormButton>Login</FormButton>
                 </FormButtonContainer>
