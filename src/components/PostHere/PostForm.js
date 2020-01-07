@@ -9,7 +9,8 @@ import { getUserPosts, savingPosts, saveDSResponse, setPost } from '../../redux/
 function PostForm(props) {
   const [input, setInput] = useState({
     post_body:'',
-    title:''
+    title:'',
+    quantity: 3
   });
   const [spinner, setSpinner] = useState(false);
   const history = useHistory();

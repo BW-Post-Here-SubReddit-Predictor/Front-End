@@ -81,7 +81,8 @@ const Login = (props) => {
             .then( res => {
                 setSpinner(false)
                 console.log("authentication response", res);
-                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('token', res.data.token) // auth
+                localStorage.setItem('userId', res.data.id) // differentiate users
 
                 props.storeLogin(res.data.id)
                 history.push('/Feed'); 
