@@ -3,7 +3,7 @@ import users from '../library/PostHereUsers2';
 
 //Components
 import PostForm from './PostHere/PostForm'
-import PostList from './PostHere/PostList'
+import PostResponse from './PostHere/PostResponse'
 
 const PostHere = () => { 
 
@@ -11,7 +11,7 @@ const PostHere = () => {
         <div>
             <h2>Create your post...</h2>
             <PostForm />
-            <PostList />
+            <PostResponse />
         </div>
     )
 }

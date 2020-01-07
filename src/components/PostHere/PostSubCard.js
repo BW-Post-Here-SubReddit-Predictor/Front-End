@@ -3,7 +3,7 @@ import React from 'react';
 
 const PostSubCard = () => {
     return(
-        <div>post subcard</div>
+        <div>SubReddit Card</div>
     )
 }
 

@@ -1,7 +1,9 @@
 import React from 'react';
+
 import PostCard from './PostCard';
 
-const PostList = () => {
+
+const SavedPostList = () => {
     return (
         <div>
             <PostCard />
@@ -9,6 +11,4 @@ const PostList = () => {
     )
 }
 
-//map over cards
-
-export default PostList;
+export default SavedPostList;
