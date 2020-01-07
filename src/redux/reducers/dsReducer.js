@@ -2,7 +2,7 @@ import constants from "../constants"
 
 const initialState = {
   post: {
-    title,
+    title: '',
     text: ''
   },
   subreddit: [] // response list received from machine learning goes in here
