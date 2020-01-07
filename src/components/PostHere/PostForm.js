@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-
+import axios from 'axios';
 import Styled from 'styled-components';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoginSpinner from '../Home/LoginSpinner';
-import { axiosWithAuth } from '../../helpers/axiosWithAuth';
-import { getUserPosts } from '../../redux/actions';
+import { getUserPosts, savingPosts } from '../../redux/actions';
 
 function PostForm(props) {
   const [input, setInput] = useState({
-    post:''
+    post_body:'',
+    title:''
   });
   const [spinner, setSpinner] = useState(false);
   const history = useHistory();
@@ -26,7 +26,8 @@ function PostForm(props) {
     setSpinner(true)
     console.log('props', props);
     console.log('spinner state', spinner);
-    axiosWithAuth().post('', input) //
+    axios
+      .post('http://nlp-subreddit-predictor.herokuapp.com', input) //
       .then(res => {
         setSpinner(false)
         console.log(res)
@@ -47,8 +48,8 @@ function PostForm(props) {
           <textarea
             type='text' 
             placeholder='Post here'
-            name='post'
-            value={props.post}
+            name='post_body'
+            value={input.post_body}
             onChange={changeHandler}
             required 
           />
@@ -68,5 +69,5 @@ const mapStateToProps = () => {
 }
 export default connect(
   mapStateToProps, 
-  {getUserPosts}
+  {getUserPosts, savingPosts}
 )(PostForm);
