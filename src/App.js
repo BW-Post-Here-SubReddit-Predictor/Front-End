@@ -16,11 +16,8 @@ import SideNav from './components/SideNav';
 function App() {
   return (
     <div className="App">
-
       <SideNav />
-
       <Route exact path='/' component={Home} />
-      <Route exact path='/register' component={Register} />
       <Route exact path='/Feed' component={PostHere}/> 
       <Route path='/Error' component={ErrorPage} />
       {/* Private Routes */}
