@@ -80,7 +80,7 @@ const Login = (props) => {
         axiosWithAuth().post('/auth/login', input)
             .then( res => {
                 setSpinner(false)
-                console.log(res);
+                console.log("authentication response", res);
                 localStorage.setItem('token', res.data.token)
 
                 props.storeLogin(res.data.id)
