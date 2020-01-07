@@ -7,7 +7,8 @@ import {
 } from './serverActions'
 
 import {
-  setPost
+  setPost,
+  saveDSResponse
 } from './DSActions'
 
 export {
@@ -16,6 +17,8 @@ export {
   storeLogin,
 
   savingPosts,
-  setPost
+  setPost,
+
+  saveDSResponse
 
 }
