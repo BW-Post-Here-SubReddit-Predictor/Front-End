@@ -11,12 +11,11 @@ import { connect } from 'react-redux';
 
 const SavedPosts = props => {
 
-
+  console.log(props, 'props')
   useEffect(() => {
     //props.getAllPosts()
-    props.getUserPosts(props.userId)
-    console.log("userPosts console", props.userPosts)
-    console.log("userId console", props.userId);
+    props.getUserPosts(localStorage.getItem('userId'))
+    // it's not working yet because we need a link to not have to refresh page
   },[])
 
   return (
@@ -38,4 +37,4 @@ const mapStateToProps = ({ serverReducer }) => {
 
 export default connect(mapStateToProps, 
   {getAllPosts, getUserPosts}
-)(SavedPosts)   
+)(SavedPosts)
