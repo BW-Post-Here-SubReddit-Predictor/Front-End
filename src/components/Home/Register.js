@@ -18,6 +18,7 @@ const StyledTextInput = Styled.input`
 `;
 
 const FormContainer = Styled.div`
+
     background-color: white;
     width: 440px;
     padding-top: 30px;
@@ -144,15 +145,5 @@ const Register = (props) => {
         </FormContainer>
     )
 }
-// const mapStateToProps = state => {
-//     return {
-//         credentials: {
-//             username: state.credentials.username,
-//             email: state.credentials.email,
-//             passsord: state.credentials.password,
-//         }
-//     }
-// }
-// export default connect(mapStateToProps, {})(Register);
 
 export default Register;
