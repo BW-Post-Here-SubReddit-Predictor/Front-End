@@ -38,7 +38,7 @@ const NavListItem = styled.li`
     &:hover {
         border-bottom-style: solid;
         border-width: thick;
-        border-color: #FFFF;
+        border-color: #ff6314;
     }
 `;
 

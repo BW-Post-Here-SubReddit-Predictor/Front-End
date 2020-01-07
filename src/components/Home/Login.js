@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 import LogoHeader from "./LogoHeader";
+import LoginSpinner from './LoginSpinner';
 
 import { storeLogin } from '../../redux/actions'
 
@@ -115,11 +116,6 @@ const Login = (props) => {
                         required
                     />
                 </div>
-
-                {
-                    !!spinner && <h1>It's spinning!</h1>
-                }
-                {/* renders whenever spinner is true */}
                 <div>
                     <StyledTextInput 
                         type='password' 
@@ -131,6 +127,10 @@ const Login = (props) => {
                     />
                 </div>
                 <NotRegisteredMessage>Not registered? <Link to="/register">Create an account!</Link></NotRegisteredMessage>
+                {/* renders whenever spinner is true */}
+                {
+                    !!spinner && <LoginSpinner />
+                }
                 <FormButtonContainer>
                     <FormButton>Login</FormButton>
                 </FormButtonContainer>
