@@ -15,17 +15,24 @@ const SavedPosts = props => {
   useEffect(() => {
     //props.getAllPosts()
     props.getUserPosts(props.userId)
+    console.log("userPosts console", props.userPosts)
+    console.log("userId console", props.userId);
   },[])
 
   return (
-    <>
-      
-    </>
+    <div>
+      {props.userPosts.map((input, index) => (
+        <div key={index}>
+          <div>{input.message}</div>
+        </div>
+      ))}
+    </div>
   )
 }
 const mapStateToProps = ({ serverReducer }) => { 
   return { 
-    userId: serverReducer.userId
+    userId: serverReducer.userId,
+    userPosts: serverReducer.userPosts
   }
 }
 
