@@ -6,7 +6,7 @@ function PostForm(props) {
     <>
       <form>
         <textarea placeholder='' />
-        <button></button>
+        <button>Hi</button>
       </form>
     </>
   )
