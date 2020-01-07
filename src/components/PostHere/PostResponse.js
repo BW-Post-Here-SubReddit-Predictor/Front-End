@@ -21,7 +21,7 @@ function PostResponse(props) {
       post: props.post.post_body,
       subreddits: props.response
     }
-    console.log('hi')
+    
     setRenderedPosts([
       ...renderedPosts,
       newPost

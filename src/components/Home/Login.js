@@ -71,16 +71,15 @@ const Login = (props) => {
         })
     }
     const submitLogin = e => {
-        console.log('props', props)
+       
         e.preventDefault();
        // props.loginUser(input, props);
         setSpinner(true)
-        console.log('props', props);
-        console.log('spinner state', spinner);  
+        
         axiosWithAuth().post('/auth/login', input)
             .then( res => {
                 setSpinner(false)
-                console.log("authentication response", res);
+                
                 localStorage.setItem('token', res.data.token)
 
                 props.storeLogin(res.data.id)

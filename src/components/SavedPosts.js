@@ -15,8 +15,7 @@ const SavedPosts = props => {
   useEffect(() => {
     //props.getAllPosts()
     props.getUserPosts(props.userId)
-    console.log("userPosts console", props.userPosts)
-    console.log("userId console", props.userId);
+   
   },[])
 
   return (

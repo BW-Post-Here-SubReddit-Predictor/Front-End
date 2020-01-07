@@ -29,6 +29,7 @@ function PostForm(props) {
         setSpinner(false)
         props.saveDSResponse(res.data.predictions)
         props.setPost(input)
+        
 
       })
       .catch(err => {
