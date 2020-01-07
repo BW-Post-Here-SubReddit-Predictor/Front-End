@@ -14,7 +14,7 @@ const SavedPosts = props => {
 
   useEffect(() => {
     //props.getAllPosts()
-    props.getUserPosts(1)
+    props.getUserPosts(props.userId)
   },[])
 
   return (
@@ -23,9 +23,9 @@ const SavedPosts = props => {
     </>
   )
 }
-const mapStateToProps = state => { 
+const mapStateToProps = ({ serverReducer }) => { 
   return { 
-
+    userId: serverReducer.userId
   }
 }
 

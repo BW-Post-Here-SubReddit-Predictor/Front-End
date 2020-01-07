@@ -1,11 +1,16 @@
 import {
   getUserPosts,
   getAllPosts,
-  storeLogin
+  storeLogin,
 } from './serverActions'
+
+import {
+  setPost
+} from './DSActions'
 
 export {
   getUserPosts,
   getAllPosts,
-  storeLogin
+  storeLogin,
+  setPost
 }
