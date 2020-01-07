@@ -46,6 +46,14 @@ function PostForm(props) {
       <form onSubmit={ submitPost }>
         <div>
           <textarea
+            type='text'
+            placeholder='title'
+            name='title'
+            value={input.title}
+            onChange={changeHandler}
+            required
+          />
+          <textarea
             type='text' 
             placeholder='Post here'
             name='post_body'
