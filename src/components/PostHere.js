@@ -3,15 +3,15 @@ import users from '../library/PostHereUsers2';
 
 //Components
 import PostForm from './PostHere/PostForm'
-import PostResponse from './PostHere/PostResponse'
+import PostList from './PostHere/PostList'
 
 const PostHere = () => { 
 
     return (
         <div>
-            <h2>Post Here App</h2>
+            <h2>Create your post...</h2>
             <PostForm />
-            <PostResponse />
+            <PostList />
         </div>
     )
 }
