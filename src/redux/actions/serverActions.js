@@ -1,6 +1,10 @@
 import { axiosWithAuth } from '../../helpers/axiosWithAuth'
 import constants from '../constants'
 
+export const storeLogin = (userId) =>  { 
+  return {type: constants.STORE_LOGIN, payload: userId}
+}
+
 export const getUserPosts = (userID) => (dispatch) => {
   dispatch({ type: constants.GETTING_USER_POSTS })
   axiosWithAuth().get(`/posts/${userID}/user`)
@@ -14,10 +18,6 @@ export const getUserPosts = (userID) => (dispatch) => {
     })
 }
 
-export const storeLogin = (userId) =>  { 
-  console.log("userId ", userId); 
-  return {type: constants.STORE_LOGIN, payload: userId}
-}
 export const getAllPosts = () => dispatch => {
 
   axiosWithAuth().get('/posts')
@@ -29,3 +29,15 @@ export const getAllPosts = () => dispatch => {
     })
 }
 
+export const saveNewPost = (postInfo) => dispatch => {
+  dispatch({ type: constants.SAVING_NEW_POST })
+  axiosWithAuth().post('/api/posts', postInfo)
+    .then( res => {
+      console.log(res)
+      dispatch({ type: constants.SAVED_NEW_POST, payload: postInfo })
+    })
+    .catch( err => {
+      console.log(err)
+      dispatch({ type: constants.S})
+    })
+}
