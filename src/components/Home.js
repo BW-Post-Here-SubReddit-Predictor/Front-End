@@ -1,27 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import Login from './Home/Login';
 import Register from './Home/Register';
 
-
-//temporary styles
-const homeAnimation = {
-    border: '2px solid',
-    width: '300px',
-    height: '500px',
-    margin: '0 auto'
-}
-const loginCard = {
-    border: '2px solid'
-}
-const registerCard = {
-    border: '2px solid'
-}
-
 const Home = () => {
+    const [showLogin, setShowLogin] = useState(true);
+
     return(
-        <div>   
-            <Login style={loginCard} />
+        <div style={{ margin: "0 auto", display: "flex", alignItems: "center"}}>   
+            { showLogin ? <Login setShowLogin={setShowLogin} /> : <Register setShowLogin={setShowLogin} /> }
         </div>
     )
 }
