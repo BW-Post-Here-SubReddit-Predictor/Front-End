@@ -28,7 +28,7 @@ const mapStateToProps = ({ dsReducer }) => {
   return {
     response: dsReducer.subreddit, // props.response
     post: dsReducer.post, // props.post
-    userPosts
+    userPosts: dsReducer.userPosts
   }
 }
 
