@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
-
+import PostCard from './PostCard';
 import { setPost, savingPosts } from '../../redux/actions'
 // need to persists posts to state so props.savingPosts(input)
 // add an onclick function and then console.log userPosts to make sure its saved
@@ -27,15 +27,16 @@ function PostResponse(props) {
       newPost
     ])
   }, [props.post])
-
+  console.log(props.response);
   return (
-    <>
-      <div>
-        <h3>{props.post.title}</h3>
-        <h3>Subreddit</h3>
-        <h4>Additional Stats</h4>
-      </div>
-    </>
+    <div>
+      {renderedPosts.map((item, index) => {
+        return (
+          <PostCard key={index} item={item} />
+        )
+      }
+    )}
+    </div>
   )
 }
 
