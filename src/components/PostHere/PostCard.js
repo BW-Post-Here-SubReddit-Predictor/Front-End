@@ -27,7 +27,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
     }
 
     const handleEdit = ev => {
-        setModal(true)
+        setModal(!modal)
     }
 
     const handleInput = ev => {
@@ -80,9 +80,9 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
         {/* modal */}
         {
             modal &&         
-                <div className='modal__modalBackground'>
+                <div className='modal__modalBackground' onClick={handleEdit}>
                     <div className='modal__modalCont'>
-                        <form>
+                        <form onSubmit={submitEdit}>
                             <input 
                             placeholder='title' 
                             value={modalInput.title}
@@ -95,6 +95,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
                             onChange={handleInput}
                             name='post'
                             />
+                            <button>Submit Changes</button>
                         </form>
                     </div>
                 </div>

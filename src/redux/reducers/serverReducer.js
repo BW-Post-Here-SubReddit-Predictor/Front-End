@@ -66,17 +66,17 @@ export const serverReducer = (state = initialState, { type, payload }) => {
       //   }
       // }
 
-      const index = state.userPosts.findIndex(e => {
+      const deleteIndex = state.userPosts.findIndex(e => {
         return e.id === payload
       })
 
-      const newPosts = state.userPosts.slice(0, index)
+      const postsAfterDeletion = state.userPosts.slice(0, deleteIndex)
                                       .concat(state.userPosts
-                                      .slice(index + 1))
+                                      .slice(deleteIndex + 1))
 
       return {
         ...state,
-        userPosts: newPosts,
+        userPosts: postsAfterDeletion,
         isDeletingPost: false
       }
 
@@ -87,18 +87,18 @@ export const serverReducer = (state = initialState, { type, payload }) => {
         }
       case constants.EDIT_POST:
 
-        const index = state.userPosts.findIndex(e => {
+        const editIndex = state.userPosts.findIndex(e => {
           return e.id === payload.id
         })
 
-        const newPosts = state.userPosts.slice(0, index)
+        const postsAfterEdit = state.userPosts.slice(0, editIndex)
                                         .concat(payload)
                                         .concat(state.userPosts
-                                        .slice(index + 1))
+                                        .slice(editIndex + 1))
 
       return {
         ...state,
-        userPosts: newPosts,
+        userPosts: postsAfterEdit,
         isEditingPost: false
       }
 
