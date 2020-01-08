@@ -34,6 +34,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
     // component needs to expect id of a post that has yet to be assigned one
     // id should be conditionally passed in if PostCard is rendered from SavedPosts
     // SavedPosts get should retrieve object with id data
+    console.log(item)
     const history = useHistory()
     const [modal, setModal] = useState(false)
     const [modalInput, setModalInput] = useState({
@@ -43,11 +44,11 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
 
 
     const handleSavePost = ev => {
-        console.log('item console', item); 
+        console.log(item.subreddits[0], 'posted subreddit')
         const saveItem = {
             post: item.post,
             title: item.title,
-            subreddit: item.subreddits[0],
+            subreddit: item.subreddits[0].name,
             user_id: Number(item.user_id)
 
 
@@ -56,7 +57,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
         savingPosts(saveItem) // item passed in needs to have the right structure
     }
     const handleDelete = ev => {
-        deletePost(id)
+        deletePost(item.id)
     }
     const handleEdit = ev => {
         setModal(!modal)
@@ -84,11 +85,20 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
             <PostCardSection>{item.post}</PostCardSection>
             <PostCardSection>
                 {
-                    item.subreddits.map((subreddit, index) => (
-                        <div key={index}>
-                            <a target="_blank" href={"http://reddit.com/r/" + subreddit.name} key={index}>r/{subreddit.name}</a>
-                        </div>)
-                    )
+                    history.location.pathname === '/Savedposts' ? 
+                        (<a target="_blank" href={"http://reddit.com/r/" + item.subreddit}>r/{item.subreddit}</a>)
+                        : null 
+                }
+                {
+                    history.location.pathname === '/Feed' ?
+                        item.subreddits.map((subreddit, index) => (
+                            <div key={index}>
+                                <a target="_blank" href={"http://reddit.com/r/" + subreddit.name} key={index}>r/{subreddit.name}</a>
+                            </div>)
+                            )
+                        :
+                        null
+
                 }
             </PostCardSection>
         </PostCardContainer>
@@ -100,7 +110,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
                     null
             }
             {
-                history.location.pathname === '/Savedposts' && item.userId === localStorage.getItem('userId') ?
+                history.location.pathname === '/Savedposts' && Number(item.user_id) === Number(localStorage.getItem('userId')) ?
                     (
                         <>
                             <CardButton onClick={handleDelete}>Delete</CardButton>

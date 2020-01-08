@@ -39,7 +39,7 @@ const SavedPosts = props => {
 
   return (
     <div>
-      {dummyArray.map((item, index) => (
+      {props.userPosts.map((item, index) => (
         <PostCard key={index} item={item} />
       ))}
     </div>
