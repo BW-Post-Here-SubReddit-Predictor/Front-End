@@ -1,12 +1,10 @@
 //React
 import React, { useEffect, useState } from 'react'
-
+import axios from 'axios';
 //Components
 import PostCard from './PostHere/PostCard'
-
 //Actions
 import { getAllPosts, getUserPosts } from '../redux/actions'
-
 import { connect } from 'react-redux'; 
 
 const SavedPosts = props => {
@@ -14,6 +12,14 @@ const SavedPosts = props => {
   useEffect(() => {
     props.getUserPosts(localStorage.getItem('userId'))
     // it's not working yet because we need a link to not have to refresh page
+    axios
+    .get(`/api/posts/${userID}/user`)
+    .then(res => {
+      getUserPosts(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   },[])
 
   const [dummyArray, setDummyArray] = useState([
@@ -31,7 +37,7 @@ const SavedPosts = props => {
         }
       ],
       id: 222,
-      userId: localStorage.getItem('userId')
+      userID: localStorage.getItem('userID')
     }
   ])
 
@@ -45,6 +51,7 @@ const SavedPosts = props => {
     </div>
   )
 }
+
 const mapStateToProps = ({ serverReducer }) => { 
   return { 
     userId: serverReducer.userId,
