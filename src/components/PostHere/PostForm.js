@@ -64,6 +64,7 @@ function PostForm(props) {
       .post('https://btr-test.herokuapp.com/predict/', input) //
       .then(res => {
         setSpinner(false)
+        console.log(res);
         props.saveDSResponse(res.data.predictions)
         props.setPost(input)
         console.log(res)
