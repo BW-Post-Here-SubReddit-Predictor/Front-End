@@ -52,7 +52,7 @@ const SideNav = () => {
                     <Link style={{textDecoration: 'none', color:'white'}} to='/Feed'>Feed</Link>
                 </NavListItem>
                 <NavListItem>
-                    <Link style={{textDecoration: 'none', color:'white'}} to='/'>Reddit.com</Link>
+                    <Link style={{textDecoration: 'none', color:'white'}} to='/'>reddit.com</Link>
                 </NavListItem>
                 <NavListItem>
                     <Link style={{textDecoration: 'none', color: 'white'}} to='/Savedposts'>Saved Posts</Link>
