@@ -30,7 +30,7 @@ export const getAllPosts = () => dispatch => {
 }
 
 
-export const savingPosts = (inputPost) => dispatch => { 
+export const savingPosts = (inputPost) => dispatch => {
   
   dispatch({type: constants.SAVING_NEW_POST})
   axiosWithAuth().post('/posts', inputPost)

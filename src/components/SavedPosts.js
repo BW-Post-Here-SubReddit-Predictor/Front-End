@@ -1,8 +1,8 @@
 //React
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 //Components
-import UserPosts from './SavedPosts/UserPosts'
+import PostCard from './PostHere/PostCard'
 
 //Actions
 import { getAllPosts, getUserPosts } from '../redux/actions'
@@ -10,20 +10,37 @@ import { getAllPosts, getUserPosts } from '../redux/actions'
 import { connect } from 'react-redux'; 
 
 const SavedPosts = props => {
-
-  console.log(props, 'props')
+  // get req to server to retrieve SAVED posts (with id)
   useEffect(() => {
-    //props.getAllPosts()
     props.getUserPosts(localStorage.getItem('userId'))
     // it's not working yet because we need a link to not have to refresh page
   },[])
 
+  const [dummyArray, setDummyArray] = useState([
+    {
+      title: 'fake title',
+      post: 'fake news',
+      subreddits: [
+        {
+          'name': 'fake subreddit',
+          'proba': 0.1
+        },
+        {
+          'name': 'another fake subreddit',
+          'proba': 0.2
+        }
+      ],
+      id: 222,
+      userId: localStorage.getItem('userId')
+    }
+  ])
+
+  // replace dummyArray with props.userPosts once backend data comes through
+
   return (
     <div>
-      {props.userPosts.map((input, index) => (
-        <div key={index}>
-          <div>{input.message}</div>
-        </div>
+      {dummyArray.map((item, index) => (
+        <PostCard key={index} item={item} />
       ))}
     </div>
   )
