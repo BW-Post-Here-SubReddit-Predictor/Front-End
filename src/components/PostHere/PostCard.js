@@ -1,6 +1,113 @@
-import React from 'react';
+
+import React, { useState } from 'react';
+
 import Styled from 'styled-components';
+
 import { useHistory } from 'react-router-dom';
+import { savingPosts, deletePost, editPost } from '../../redux/actions'
+
+import { connect } from 'react-redux'
+
+import './PostCard.scss'
+
+
+const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
+    // component needs to expect id of a post that has yet to be assigned one
+    // id should be conditionally passed in if PostCard is rendered from SavedPosts
+    // SavedPosts get should retrieve object with id data
+    const history = useHistory()
+
+    const [modal, setModal] = useState(false)
+    const [modalInput, setModalInput] = useState({
+        title: item.title,
+        post: item.post
+    })
+
+    const handleSavePost = ev => {
+        savingPosts(item)
+    }
+
+    const handleDelete = ev => {
+        deletePost(id)
+    }
+
+    const handleEdit = ev => {
+        setModal(!modal)
+    }
+
+    const handleInput = ev => {
+        setModalInput({
+            ...modalInput,
+            [ev.target.name]: ev.target.value
+        })
+    }
+
+    const submitEdit = ev => {
+        ev.preventDefault()
+
+        const post = {
+            ...item,
+            title: modalInput.title,
+            post: modalInput.post
+        }
+
+        editPost(post)
+    }
+
+    return (
+        <>
+        {/* card */}
+        <div>
+            <div>{item.title}</div>
+            <div>{item.post}</div>
+            <div>{item.subreddits.map((item, index) => (<div key={index}>{item.name}</div>))}
+            </div>
+            {
+                history.location.pathname === '/Feed' ?
+                    (<button onClick={handleSavePost}>save</button>)
+                    :
+                    null
+            }
+
+            {
+                history.location.pathname === '/SavedPosts' && item.userId === localStorage.getItem('userId') ?
+                    (
+                        <>
+                            <button onClick={handleDelete}>delete</button>
+                            <button onClick={handleEdit}>edit</button>
+                        </>
+                    )
+                    :
+                    null
+            }
+
+        </div>
+        {/* modal */}
+        {
+            modal &&         
+                <div className='modal__modalBackground' onClick={handleEdit}>
+                    <div className='modal__modalCont'>
+                        <form onSubmit={submitEdit}>
+                            <input 
+                            placeholder='title' 
+                            value={modalInput.title}
+                            onChange={handleInput}
+                            name='title'
+                            />
+                            <input 
+                            placeholder='post body' 
+                            value={modalInput.post}
+                            onChange={handleInput}
+                            name='post'
+                            />
+                            <button>Submit Changes</button>
+                        </form>
+                    </div>
+                </div>
+        }
+
+
+        </>
 
 const PostCardContainer = Styled.div`
     background-color: white;
@@ -31,7 +138,7 @@ const CardButtonContainer = Styled.div`
     justify-content: flex-end;
     margin-top: 10px;
 `;
-
+// migrate styled components to divs in above component
 const PostCard = ({ postInfo }) => {
     const history = useHistory() // TBD: Conditional rendering of Save/Edit/Delete
 
@@ -54,7 +161,16 @@ const PostCard = ({ postInfo }) => {
             <CardButton>Edit</CardButton>
             <CardButton>Delete</CardButton>
         </CardButtonContainer></>
+
     )
 }
 
-export default PostCard;
+const mapStateToProps = state => {
+    return {}
+}
+
+export default connect(mapStateToProps, {
+    savingPosts,
+    deletePost,
+    editPost
+})(PostCard);
