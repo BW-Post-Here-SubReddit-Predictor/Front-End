@@ -132,11 +132,11 @@ function PostForm(props) {
             <List1 onClick={() => setIstrue(true)}>click # of subreddits</List1> 
             : 
             <>
-            <List onClick={}name="1">1</List>
-            <List onClick={}name="3">3</List>
-            <List onClick={}name="5">5</List>
-            <List onClick={}name="10">10</List>
-            <List onClick={}name = "20">20</List>
+            <List name="1">1</List>
+            <List name="3">3</List>
+            <List name="5">5</List>
+            <List name="10">10</List>
+            <List name = "20">20</List>
             </>
             }
           </ul>
