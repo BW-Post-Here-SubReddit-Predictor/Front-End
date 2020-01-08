@@ -61,9 +61,10 @@ function PostForm(props) {
     e.preventDefault();
     setSpinner(true)
     axios
-      .post('https://btr-test.herokuapp.com/', input) //
+      .post('https://btr-test.herokuapp.com/predict/', input) //
       .then(res => {
         setSpinner(false)
+        console.log(res);
         props.saveDSResponse(res.data.predictions)
         props.setPost(input)
         
