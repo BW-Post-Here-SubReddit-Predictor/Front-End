@@ -31,7 +31,7 @@ const NavListItem = styled.li`
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
     border-bottom-style: solid;
     border-width: thick;
     border-color: #000000;
