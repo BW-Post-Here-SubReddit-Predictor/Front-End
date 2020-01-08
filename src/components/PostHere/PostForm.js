@@ -46,7 +46,7 @@ function PostForm(props) {
   const [input, setInput] = useState({
     submission_text:'',
     title:'',
-    return_count: 3
+    return_count: 3 // needs dropdown selection to set return count
   });
   const [spinner, setSpinner] = useState(false);
   const history = useHistory();
@@ -61,12 +61,12 @@ function PostForm(props) {
     e.preventDefault();
     setSpinner(true)
     axios
-      .post('https://btr-test.herokuapp.com/', input) //
+      .post('https://btr-test.herokuapp.com/predict/', input) //
       .then(res => {
         setSpinner(false)
         props.saveDSResponse(res.data.predictions)
         props.setPost(input)
-        
+        console.log(res)
 
       })
       .catch(err => {

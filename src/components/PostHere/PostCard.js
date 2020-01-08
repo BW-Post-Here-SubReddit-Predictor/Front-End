@@ -87,7 +87,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
             <PostCardSection>
                 {
                     item.subreddits.map((subreddit, index) => (
-                        <div>
+                        <div key={index}>
                             <a target="_blank" href={"http://reddit.com/r/" + subreddit.name} key={index}>r/{subreddit.name}</a>
                         </div>)
                     )
