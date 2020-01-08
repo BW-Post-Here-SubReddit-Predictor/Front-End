@@ -22,25 +22,6 @@ const SavedPosts = props => {
     // })
   },[])
 
-  const [dummyArray, setDummyArray] = useState([
-    {
-      title: 'fake title',
-      post: 'fake news',
-      subreddits: [
-        {
-          'name': 'fake subreddit',
-          'proba': 0.1
-        },
-        {
-          'name': 'another fake subreddit',
-          'proba': 0.2
-        }
-      ],
-      id: 222,
-      userID: localStorage.getItem('userID')
-    }
-  ])
-
   // replace dummyArray with props.userPosts once backend data comes through
 
   return (

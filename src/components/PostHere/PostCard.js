@@ -34,7 +34,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
     // component needs to expect id of a post that has yet to be assigned one
     // id should be conditionally passed in if PostCard is rendered from SavedPosts
     // SavedPosts get should retrieve object with id data
-    console.log(item)
+
     const history = useHistory()
     const [modal, setModal] = useState(false)
     const [modalInput, setModalInput] = useState({
@@ -44,7 +44,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
 
 
     const handleSavePost = ev => {
-        console.log(item.subreddits[0], 'posted subreddit')
+        console.log('called save post to backend')
         const saveItem = {
             post: item.post,
             title: item.title,
@@ -53,7 +53,6 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
 
 
         };
-        console.log('number', saveItem.user_id);
         savingPosts(saveItem) // item passed in needs to have the right structure
     }
     const handleDelete = ev => {
@@ -61,6 +60,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
     }
     const handleEdit = ev => {
         setModal(!modal)
+        ev.stopPropagation()
     }
     const handleInput = ev => {
         setModalInput({
@@ -126,7 +126,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
         {
             modal &&         
                 <div className='modal__modalBackground' onClick={handleEdit}>
-                    <div className='modal__modalCont'>
+                    <div className='modal__modalCont' onClick={ev => ev.stopPropagation()}>
                         <form onSubmit={submitEdit}>
                             <input 
                             placeholder='title' 
