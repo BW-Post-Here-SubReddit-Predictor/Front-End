@@ -19,7 +19,7 @@ const SavedPosts = props => {
   return (
     <div>
       {props.userPosts.map((item, index) => (
-         <PostCard key={index} item={item} />
+        <PostCard key={index} item={item} />
       ))}
     </div>
   )
