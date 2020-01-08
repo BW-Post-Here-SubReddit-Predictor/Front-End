@@ -48,7 +48,8 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
     })
 
     const handleSavePost = ev => {
-        savingPosts(item)
+        const saveItem = '';
+        savingPosts(item) // item passed in needs to have the right structure
     }
 
     const handleDelete = ev => {
@@ -87,7 +88,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
             <PostCardSection>
                 {
                     item.subreddits.map((subreddit, index) => (
-                        <div>
+                        <div key={index}>
                             <a target="_blank" href={"http://reddit.com/r/" + subreddit.name} key={index}>r/{subreddit.name}</a>
                         </div>)
                     )
@@ -103,7 +104,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
             }
 
             {
-                history.location.pathname === '/SavedPosts' && item.userId === localStorage.getItem('userId') ?
+                history.location.pathname === '/Savedposts' && item.userId === localStorage.getItem('userId') ?
                     (
                         <>
                             <CardButton onClick={handleDelete}>Delete</CardButton>
