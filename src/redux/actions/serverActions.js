@@ -30,7 +30,7 @@ export const getAllPosts = () => dispatch => {
 }
 
 
-export const savingPosts = (inputPost) => dispatch => { 
+export const savingPosts = (inputPost) => dispatch => {
   
   dispatch({type: constants.SAVING_NEW_POST})
   axiosWithAuth().post('/posts', inputPost)
@@ -44,3 +44,29 @@ export const savingPosts = (inputPost) => dispatch => {
 
 }
 
+export const deletePost = (id) => dispatch => {
+  dispatch({ type: constants.DELETING_POST })
+
+  axiosWithAuth().delete(`/posts/${id}`)
+    .then( res => {
+      console.log(res)
+      // delete locally on clientApp
+      dispatch({ type: constants.DELETE_POST, payload: id })
+    })
+    .catch( err => {
+      console.log(err)
+    })
+}
+
+export const editPost = (post) => dispatch => {
+  dispatch({ type: constants.EDITING_POST })
+  
+  axiosWithAuth().put(`/posts/${post.id}`, post)
+    .then( res => {
+      console.log(res)
+      dispatch({ type: constants.EDIT_POST, payload: post })
+    })
+    .catch( err => {
+      console.log(err)
+    })
+}
