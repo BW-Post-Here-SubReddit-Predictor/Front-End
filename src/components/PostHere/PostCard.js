@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 const PostCard = ({ item, savingPosts }) => {
     const history = useHistory()
-
+    
     const handleSavePost = ev => {
         savingPosts(item)
     }

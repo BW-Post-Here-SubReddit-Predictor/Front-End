@@ -19,7 +19,9 @@ function PostResponse(props) {
     const newPost = {
       title: props.post.title,
       post: props.post.post_body,
-      subreddits: props.response
+      subreddits: props.response,
+      user_id: localStorage.getItem('userId'), 
+      
     }
     setRenderedPosts([
       ...renderedPosts,
@@ -46,6 +48,7 @@ const mapStateToProps = ({ dsReducer }) => {
     response: dsReducer.subreddit, // props.response
     post: dsReducer.post, // props.post
     userPosts: dsReducer.userPosts
+
   }
 }
 
