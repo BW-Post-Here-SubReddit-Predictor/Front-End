@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { savingPosts, deletePost } from '../../redux/actions'
+import { savingPosts, deletePost, editPost } from '../../redux/actions'
 
 import { connect } from 'react-redux'
 
 import './PostCard.scss'
 
 
-const PostCard = ({ item, savingPosts, id, deletePost }) => {
+const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
     // component needs to expect id of a post that has yet to be assigned one
     // id should be conditionally passed in if PostCard is rendered from SavedPosts
     // SavedPosts get should retrieve object with id data
@@ -39,7 +39,14 @@ const PostCard = ({ item, savingPosts, id, deletePost }) => {
 
     const submitEdit = ev => {
         ev.preventDefault()
-        //
+
+        const post = {
+            ...item,
+            title: modalInput.title,
+            post: modalInput.post
+        }
+
+        editPost(post)
     }
 
     return (
@@ -104,5 +111,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
     savingPosts,
-    deletePost
+    deletePost,
+    editPost
 })(PostCard);

@@ -57,3 +57,16 @@ export const deletePost = (id) => dispatch => {
       console.log(err)
     })
 }
+
+export const editPost = (post) => dispatch => {
+  dispatch({ type: constants.EDITING_POST })
+  
+  axiosWithAuth().put(`/posts/${post.id}`, post)
+    .then( res => {
+      console.log(res)
+      dispatch({ type: constants.EDIT_POST, payload: post })
+    })
+    .catch( err => {
+      console.log(err)
+    })
+}

@@ -76,8 +76,32 @@ export const serverReducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        userPosts: newPosts
+        userPosts: newPosts,
+        isDeletingPost: false
       }
+
+      case constants.EDITING_POST:
+        return {
+          ...state,
+          isEditingPost: true
+        }
+      case constants.EDIT_POST:
+
+        const index = state.userPosts.findIndex(e => {
+          return e.id === payload.id
+        })
+
+        const newPosts = state.userPosts.slice(0, index)
+                                        .concat(payload)
+                                        .concat(state.userPosts
+                                        .slice(index + 1))
+
+      return {
+        ...state,
+        userPosts: newPosts,
+        isEditingPost: false
+      }
+
 
     case constants.STORE_LOGIN: 
       return {

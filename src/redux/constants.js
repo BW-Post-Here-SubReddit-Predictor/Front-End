@@ -11,6 +11,9 @@ const constants = {
 
   DELETING_POST: 'DELETING_POST',
   DELETE_POST: 'DELETE_POST',
+
+  EDITING_POST: 'EDITTING_POST',
+  EDIT_POST: 'EDIT_POST',
   //loginStore
   STORE_LOGIN: 'STORE_LOGIN', 
   //DS post

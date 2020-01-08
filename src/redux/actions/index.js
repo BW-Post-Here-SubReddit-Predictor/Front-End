@@ -3,7 +3,8 @@ import {
   getAllPosts,
   storeLogin,
   savingPosts,
-  deletePost
+  deletePost,
+  editPost
 
 } from './serverActions'
 
@@ -20,6 +21,7 @@ export {
   savingPosts,
   setPost,
   deletePost,
+  editPost,
 
   saveDSResponse
 
