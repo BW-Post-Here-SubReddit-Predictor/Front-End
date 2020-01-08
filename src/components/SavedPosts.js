@@ -12,14 +12,14 @@ const SavedPosts = props => {
   useEffect(() => {
     props.getUserPosts(localStorage.getItem('userId'))
     // it's not working yet because we need a link to not have to refresh page
-    axios
-    .get(`/api/posts/${userID}/user`)
-    .then(res => {
-      getUserPosts(res.data);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    // axios
+    // .get(`/api/posts/${userID}/user`)
+    // .then(res => {
+    //   getUserPosts(res.data);
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
   },[])
 
   const [dummyArray, setDummyArray] = useState([
