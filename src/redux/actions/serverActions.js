@@ -61,9 +61,9 @@ export const editPost = (postToEdit) => dispatch => {
   dispatch({ type: constants.EDITING_POST })
   const { post, title, subreddit } = postToEdit;
   const newPost = {
-    post: post,
-    title: title,
-    subreddit: subreddit
+    post: postToEdit.post,
+    title: postToEdit.title,
+    subreddit: postToEdit.subreddit
   }
 
 
