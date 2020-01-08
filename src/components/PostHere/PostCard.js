@@ -1,24 +1,61 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { savingPosts } from '../../redux/actions'
+import { savingPosts, deletePost, editPost } from '../../redux/actions'
 
 import { connect } from 'react-redux'
 
+import './PostCard.scss'
 
-const PostCard = ({ item, savingPosts }) => {
+
+const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
+    // component needs to expect id of a post that has yet to be assigned one
+    // id should be conditionally passed in if PostCard is rendered from SavedPosts
+    // SavedPosts get should retrieve object with id data
     const history = useHistory()
-    
+
+    const [modal, setModal] = useState(false)
+    const [modalInput, setModalInput] = useState({
+        title: item.title,
+        post: item.post
+    })
+
     const handleSavePost = ev => {
         savingPosts(item)
     }
 
-    useEffect(() => {
-        console.log(item, 'item')
-    }, [item])
+    const handleDelete = ev => {
+        deletePost(id)
+    }
+
+    const handleEdit = ev => {
+        setModal(!modal)
+    }
+
+    const handleInput = ev => {
+        setModalInput({
+            ...modalInput,
+            [ev.target.name]: ev.target.value
+        })
+    }
+
+    const submitEdit = ev => {
+        ev.preventDefault()
+
+        const post = {
+            ...item,
+            title: modalInput.title,
+            post: modalInput.post
+        }
+
+        editPost(post)
+    }
+
     return (
+        <>
+        {/* card */}
         <div>
             <div>{item.title}</div>
-            <div>{item.post_body}</div>
+            <div>{item.post}</div>
             <div>{item.subreddits.map((item, index) => (<div key={index}>{item.name}</div>))}
             </div>
             {
@@ -32,8 +69,8 @@ const PostCard = ({ item, savingPosts }) => {
                 history.location.pathname === '/SavedPosts' && item.userId === localStorage.getItem('userId') ?
                     (
                         <>
-                            <button>delete</button>
-                            <button>edit</button>
+                            <button onClick={handleDelete}>delete</button>
+                            <button onClick={handleEdit}>edit</button>
                         </>
                     )
                     :
@@ -41,6 +78,32 @@ const PostCard = ({ item, savingPosts }) => {
             }
 
         </div>
+        {/* modal */}
+        {
+            modal &&         
+                <div className='modal__modalBackground' onClick={handleEdit}>
+                    <div className='modal__modalCont'>
+                        <form onSubmit={submitEdit}>
+                            <input 
+                            placeholder='title' 
+                            value={modalInput.title}
+                            onChange={handleInput}
+                            name='title'
+                            />
+                            <input 
+                            placeholder='post body' 
+                            value={modalInput.post}
+                            onChange={handleInput}
+                            name='post'
+                            />
+                            <button>Submit Changes</button>
+                        </form>
+                    </div>
+                </div>
+        }
+
+
+        </>
     )
 }
 
@@ -49,5 +112,7 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {
-    savingPosts
+    savingPosts,
+    deletePost,
+    editPost
 })(PostCard);

@@ -16,12 +16,15 @@ function PostResponse(props) {
   // ie userPosts[2].subreddits.map => generate a list of subreddits for a given post at index 2
   useEffect(() => {
 
+    console.log(props.post, props.response, 'hi')
+    // user_id, title, post, subreddits
+
     const newPost = {
       title: props.post.title,
       post: props.post.post_body,
       subreddits: props.response,
-      user_id: localStorage.getItem('userId'), 
-      
+      user_id: localStorage.getItem('userId')
+
     }
     setRenderedPosts([
       ...renderedPosts,
