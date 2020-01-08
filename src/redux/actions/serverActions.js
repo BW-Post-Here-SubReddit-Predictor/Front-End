@@ -9,7 +9,7 @@ export const getUserPosts = (userID) => (dispatch) => {
   dispatch({ type: constants.GETTING_USER_POSTS })
   axiosWithAuth().get(`/posts/${userID}/user`)
     .then( res => {
-      console.log(res)
+      console.log(res, 'get request')
       dispatch({ type: constants.GOT_USER_POSTS, payload: res.data})
     })
     .catch( err => {
@@ -57,13 +57,22 @@ export const deletePost = (id) => dispatch => {
     })
 }
 
-export const editPost = (post) => dispatch => {
+export const editPost = (postToEdit) => dispatch => {
   dispatch({ type: constants.EDITING_POST })
-  
-  axiosWithAuth().put(`/posts/${post.id}`, post)
+  const { post, title, subreddit } = postToEdit;
+  const newPost = {
+    post: post,
+    title: title,
+    subreddit: subreddit
+  }
+
+
+  console.log(postToEdit, 'put object shape')
+  console.log(post, title, subreddit, 'what does it look like')
+  axiosWithAuth().put(`/posts/${postToEdit.id}`, newPost)
     .then( res => {
-      console.log(res)
-      dispatch({ type: constants.EDIT_POST, payload: post })
+      console.log(res, 'put response')
+      dispatch({ type: constants.EDIT_POST, payload: postToEdit })
     })
     .catch( err => {
       console.log(err)
