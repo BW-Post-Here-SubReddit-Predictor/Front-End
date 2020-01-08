@@ -31,7 +31,7 @@ const NavListItem = styled.li`
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
     border-bottom-style: solid;
     border-width: thick;
     border-color: #000000;
@@ -47,15 +47,15 @@ const SideNav = () => {
     return (
         <NavWrapper>
             <NavList>
-                <Link to='/'><NavLogo /></Link>
+                <Link to='/' style={{display:'flex', justifyContent:'center'}}><NavLogo /></Link>
                 <NavListItem>
                     <Link style={{textDecoration: 'none', color:'white'}} to='/Feed'>Feed</Link>
                 </NavListItem>
                 <NavListItem>
-                    <Link style={{textDecoration: 'none', color:'white'}} to='/'>Reddit.com</Link>
+                    <Link style={{textDecoration: 'none', color: 'white'}} to='/Savedposts'>Saved Posts</Link>
                 </NavListItem>
                 <NavListItem>
-                    <Link style={{textDecoration: 'none', color: 'white'}} to='/Savedposts'>Saved Posts</Link>
+                    <a style={{textDecoration: 'none', color:'white'}} target='_blank' href='http://reddit.com/r/'>reddit.com</a>
                 </NavListItem>
             </NavList>
         </NavWrapper>

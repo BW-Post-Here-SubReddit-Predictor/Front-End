@@ -19,7 +19,7 @@ function PostResponse(props) {
 
     const newPost = {
       title: props.post.title,
-      post: props.post.post_body,
+      post: props.post.submission_text,
       subreddits: props.response,
       user_id: localStorage.getItem('userId')
 
@@ -32,7 +32,7 @@ function PostResponse(props) {
     <PostResponseContainer>
       {
         renderedPosts.map((postInfo, index) => {
-          return postInfo.title ? <PostCard key={index} postInfo={postInfo} /> : <Fragment key="foo" /> // BUGFIX
+          return postInfo.title ? <PostCard key={index} item={postInfo} /> : null // BUGFIX
 
       }
     )}
