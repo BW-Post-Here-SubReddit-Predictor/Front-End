@@ -45,7 +45,7 @@ const ButtonContainer = Styled.div`
 function PostForm(props) {
   const [input, setInput] = useState({
     submission_text:'',
-    // title:'',
+    title:'',
     return_count: 3
   });
   const [spinner, setSpinner] = useState(false);
