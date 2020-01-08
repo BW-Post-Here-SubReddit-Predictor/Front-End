@@ -7,6 +7,8 @@ const initialState = {
   //posting new post
   isPostingNewSavedPost: false,
   isPostingNewSavedPostError: false,
+  //deleting post
+  isDeletingPost: false,
   //stored data
   userPosts: [],
   userId: "",
@@ -49,6 +51,32 @@ export const serverReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isPostingNewSavedPostError: false
+      }
+
+    case constants.DELETING_POST:
+      return {
+        ...state,
+        isDeletingPost: true
+      }
+    case constants.DELETE_POST:
+      // let index;
+      // for(let i = 0; i < state.userPosts.length; i++) {
+      //   if(state.userPosts[i].id === payload) {
+      //     index = i
+      //   }
+      // }
+
+      const index = state.userPosts.findIndex(e => {
+        return e.id === payload
+      })
+
+      const newPosts = state.userPosts.slice(0, index)
+                                      .concat(state.userPosts
+                                      .slice(index + 1))
+
+      return {
+        ...state,
+        userPosts: newPosts
       }
 
     case constants.STORE_LOGIN: 

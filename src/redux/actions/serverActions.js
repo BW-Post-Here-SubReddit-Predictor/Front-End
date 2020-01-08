@@ -44,3 +44,16 @@ export const savingPosts = (inputPost) => dispatch => {
 
 }
 
+export const deletePost = (id) => dispatch => {
+  dispatch({ type: constants.DELETING_POST })
+
+  axiosWithAuth().delete(`/posts/${id}`)
+    .then( res => {
+      console.log(res)
+      // delete locally on clientApp
+      dispatch({ type: constants.DELETE_POST, payload: id })
+    })
+    .catch( err => {
+      console.log(err)
+    })
+}
