@@ -41,6 +41,24 @@ const ButtonContainer = Styled.div`
     justify-content: flex-end;
     margin-top: 10px;
 `;
+const List = Styled.li`
+   list-style-type : none
+   background-color: white; 
+   width: 12%;
+   height: 5%;
+   margin: auto;
+   padding-left: 60px;
+
+`
+const List1 = Styled.li`
+   list-style-type : none
+   background-color: white; 
+   width: 20%;
+   height: 5%;
+   margin: auto;
+   padding-left: 20px;
+
+`
 
 function PostForm(props) {
   const [input, setInput] = useState({
@@ -49,12 +67,21 @@ function PostForm(props) {
     return_count: 3 // needs dropdown selection to set return count
   });
   const [spinner, setSpinner] = useState(false);
+  const [istrue, setIstrue] = useState(false); 
   const history = useHistory();
 
   const changeHandler = e => {
     setInput({
       ...input,
       [e.target.name]: e.target.value
+    })
+  }
+
+  const setCountHandler = e => { 
+    e.preventDefault()
+    setInput({
+      ...input, 
+      return_count: Number(e.target.name)
     })
   }
   const submitPost = e => {
@@ -98,6 +125,21 @@ function PostForm(props) {
             onChange={changeHandler}
             required 
           />
+        </div>
+        <div>
+          <ul> 
+            {!istrue ? 
+            <List1 onClick={() => setIstrue(true)}>click # of subreddits</List1> 
+            : 
+            <>
+            <List onClick={}name="1">1</List>
+            <List onClick={}name="3">3</List>
+            <List onClick={}name="5">5</List>
+            <List onClick={}name="10">10</List>
+            <List onClick={}name = "20">20</List>
+            </>
+            }
+          </ul>
         </div>
           {
             !!spinner && <LoginSpinner />
