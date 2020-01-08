@@ -19,7 +19,7 @@ function PostResponse(props) {
 
     const newPost = {
       title: props.post.title,
-      post: props.post.post_body,
+      post: props.post.submission_text,
       subreddits: props.response,
       user_id: localStorage.getItem('userId')
 

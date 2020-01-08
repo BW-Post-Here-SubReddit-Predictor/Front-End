@@ -40,9 +40,20 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
         title: item.title,
         post: item.post
     })
+
+
     const handleSavePost = ev => {
-        const saveItem = '';
-        savingPosts(item) // item passed in needs to have the right structure
+        console.log('item console', item); 
+        const saveItem = {
+            post: item.post,
+            title: item.title,
+            subreddit: item.subreddits[0],
+            user_id: Number(item.user_id)
+
+
+        };
+        console.log('number', saveItem.user_id);
+        savingPosts(saveItem) // item passed in needs to have the right structure
     }
     const handleDelete = ev => {
         deletePost(id)
