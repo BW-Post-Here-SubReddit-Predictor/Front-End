@@ -43,7 +43,6 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
 
 
     const handleSavePost = ev => {
-        console.log('item console', item); 
         const saveItem = {
             post: item.post,
             title: item.title,
