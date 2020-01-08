@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { savingPosts, deletePost } from '../../redux/actions'
 
 import { connect } from 'react-redux'
+
+import './PostCard.scss'
 
 
 const PostCard = ({ item, savingPosts, id, deletePost }) => {
@@ -10,6 +12,11 @@ const PostCard = ({ item, savingPosts, id, deletePost }) => {
     // id should be conditionally passed in if PostCard is rendered from SavedPosts
     // SavedPosts get should retrieve object with id data
     const history = useHistory()
+    const [modal, setModal] = useState(false)
+    const [modalInput, setModalInput] = useState({
+        title: item.title,
+        post: item.post
+    })
 
     const handleSavePost = ev => {
         savingPosts(item)
@@ -20,10 +27,24 @@ const PostCard = ({ item, savingPosts, id, deletePost }) => {
     }
 
     const handleEdit = ev => {
+        setModal(true)
+    }
 
+    const handleInput = ev => {
+        setModalInput({
+            ...modalInput,
+            [ev.target.name]: ev.target.value
+        })
+    }
+
+    const submitEdit = ev => {
+        ev.preventDefault()
+        //
     }
 
     return (
+        <>
+        {/* card */}
         <div>
             <div>{item.title}</div>
             <div>{item.post}</div>
@@ -49,6 +70,31 @@ const PostCard = ({ item, savingPosts, id, deletePost }) => {
             }
 
         </div>
+        {/* modal */}
+        {
+            modal &&         
+                <div className='modal__modalBackground'>
+                    <div className='modal__modalCont'>
+                        <form>
+                            <input 
+                            placeholder='title' 
+                            value={modalInput.title}
+                            onChange={handleInput}
+                            name='title'
+                            />
+                            <input 
+                            placeholder='post body' 
+                            value={modalInput.post}
+                            onChange={handleInput}
+                            name='post'
+                            />
+                        </form>
+                    </div>
+                </div>
+        }
+
+
+        </>
     )
 }
 
