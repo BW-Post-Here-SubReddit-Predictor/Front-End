@@ -1,15 +1,39 @@
-
 import React, { useState } from 'react';
-
 import Styled from 'styled-components';
-
 import { useHistory } from 'react-router-dom';
 import { savingPosts, deletePost, editPost } from '../../redux/actions'
-
 import { connect } from 'react-redux'
-
 import './PostCard.scss'
 
+const PostCardContainer = Styled.div`
+    background-color: white;
+    border: 1px solid #FB2D08;
+    margin-top: 20px;
+`;
+
+const PostCardSection = Styled.div`
+    border-bottom: 1px solid #FB2D08;
+    padding: 5px;
+    line-height: 30px;
+`;
+
+const CardButton = Styled.button`
+    box-sizing: border-box;
+    background-color: #0067b8;
+    color: white;
+    width: 110px;
+    height: 45px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 5px;
+`;
+
+const CardButtonContainer = Styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+`;
 
 const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
     // component needs to expect id of a post that has yet to be assigned one
@@ -57,14 +81,23 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
     return (
         <>
         {/* card */}
-        <div>
-            <div>{item.title}</div>
-            <div>{item.post}</div>
-            <div>{item.subreddits.map((item, index) => (<div key={index}>{item.name}</div>))}
-            </div>
+        <PostCardContainer>
+            <PostCardSection>{item.title}</PostCardSection>
+            <PostCardSection>{item.post}</PostCardSection>
+            <PostCardSection>
+                {
+                    item.subreddits.map((subreddit, index) => (
+                        <div>
+                            <a target="_blank" href={"http://reddit.com/r/" + subreddit.name} key={index}>r/{subreddit.name}</a>
+                        </div>)
+                    )
+                }
+            </PostCardSection>
+        </PostCardContainer>
+        <CardButtonContainer>
             {
                 history.location.pathname === '/Feed' ?
-                    (<button onClick={handleSavePost}>save</button>)
+                    (<CardButton onClick={handleSavePost}>Save</CardButton>)
                     :
                     null
             }
@@ -73,15 +106,15 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
                 history.location.pathname === '/SavedPosts' && item.userId === localStorage.getItem('userId') ?
                     (
                         <>
-                            <button onClick={handleDelete}>delete</button>
-                            <button onClick={handleEdit}>edit</button>
+                            <CardButton onClick={handleDelete}>Delete</CardButton>
+                            <CardButton onClick={handleEdit}>Edit</CardButton>
                         </>
                     )
                     :
                     null
             }
-
-        </div>
+        </CardButtonContainer>
+    
         {/* modal */}
         {
             modal &&         
@@ -105,64 +138,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
                     </div>
                 </div>
         }
-
-
-        </>
-
-const PostCardContainer = Styled.div`
-    background-color: white;
-    border: 1px solid #FB2D08;
-    margin-top: 20px;
-`;
-
-const PostCardSection = Styled.div`
-    border-bottom: 1px solid #FB2D08;
-    padding: 5px;
-    line-height: 30px;
-`;
-
-const CardButton = Styled.button`
-    box-sizing: border-box;
-    background-color: #0067b8;
-    color: white;
-    width: 110px;
-    height: 45px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 20px;
-    margin-left: 5px;
-`;
-
-const CardButtonContainer = Styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-`;
-// migrate styled components to divs in above component
-const PostCard = ({ postInfo }) => {
-    const history = useHistory() // TBD: Conditional rendering of Save/Edit/Delete
-
-    return (<>
-        <PostCardContainer>
-            <PostCardSection>{postInfo.title}</PostCardSection>
-            <PostCardSection>{postInfo.post}...</PostCardSection>
-            <PostCardSection>
-                {
-                    postInfo.subreddits.map((subreddit, index) => (
-                        <div>
-                            <a target="_blank" href={"http://reddit.com/r/" + subreddit.name} key={index}>r/{subreddit.name}</a>
-                        </div>)
-                    )
-                }
-            </PostCardSection>
-        </PostCardContainer>
-        <CardButtonContainer>
-            <CardButton>Save</CardButton>
-            <CardButton>Edit</CardButton>
-            <CardButton>Delete</CardButton>
-        </CardButtonContainer></>
-
-    )
+        </>);
 }
 
 const mapStateToProps = state => {
