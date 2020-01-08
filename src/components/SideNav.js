@@ -47,7 +47,7 @@ const SideNav = () => {
     return (
         <NavWrapper>
             <NavList>
-                <Link to='/'><NavLogo /></Link>
+                <Link to='/' style={{display:'flex', justifyContent:'center'}}><NavLogo /></Link>
                 <NavListItem>
                     <Link style={{textDecoration: 'none', color:'white'}} to='/Feed'>Feed</Link>
                 </NavListItem>
