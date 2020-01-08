@@ -24,8 +24,8 @@ function PostResponse(props) {
       post: props.post.post_body,
       subreddits: props.response,
       user_id: localStorage.getItem('userId')
-    }
 
+    }
     setRenderedPosts([
       ...renderedPosts,
       newPost
@@ -35,6 +35,7 @@ function PostResponse(props) {
   return (
     <div>
       {renderedPosts.map((item, index) => {
+      
         return (
           <PostCard key={index} item={item} />
         )
@@ -50,6 +51,7 @@ const mapStateToProps = ({ dsReducer }) => {
     response: dsReducer.subreddit, // props.response
     post: dsReducer.post, // props.post
     userPosts: dsReducer.userPosts
+
   }
 }
 

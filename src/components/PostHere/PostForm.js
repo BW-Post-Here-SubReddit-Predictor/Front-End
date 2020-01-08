@@ -8,9 +8,9 @@ import { getUserPosts, savingPosts, saveDSResponse, setPost } from '../../redux/
 
 function PostForm(props) {
   const [input, setInput] = useState({
-    post_body:'',
+    submission_text:'',
     title:'',
-    quantity: 3
+    return_count: 3
   });
   const [spinner, setSpinner] = useState(false);
   const history = useHistory();
@@ -25,11 +25,12 @@ function PostForm(props) {
     e.preventDefault();
     setSpinner(true)
     axios
-      .post('http://nlp-subreddit-predictor.herokuapp.com', input) //
+      .post('https://btr-test.herokuapp.com/', input) //
       .then(res => {
         setSpinner(false)
         props.saveDSResponse(res.data.predictions)
         props.setPost(input)
+        
 
       })
       .catch(err => {
@@ -52,7 +53,7 @@ function PostForm(props) {
           <textarea
             type='text' 
             placeholder='Post here'
-            name='post_body'
+            name='submission_text'
             value={input.post_body}
             onChange={changeHandler}
             required 

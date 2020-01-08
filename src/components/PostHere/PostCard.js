@@ -12,6 +12,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
     // id should be conditionally passed in if PostCard is rendered from SavedPosts
     // SavedPosts get should retrieve object with id data
     const history = useHistory()
+
     const [modal, setModal] = useState(false)
     const [modalInput, setModalInput] = useState({
         title: item.title,

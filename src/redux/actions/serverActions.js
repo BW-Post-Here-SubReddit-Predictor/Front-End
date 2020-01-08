@@ -41,7 +41,6 @@ export const savingPosts = (inputPost) => dispatch => {
   .catch(err => { 
     console.log('saved posts error', err)
   })
-
 }
 
 export const deletePost = (id) => dispatch => {
@@ -70,3 +69,4 @@ export const editPost = (post) => dispatch => {
       console.log(err)
     })
 }
+

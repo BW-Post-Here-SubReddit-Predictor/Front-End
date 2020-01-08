@@ -1,7 +1,7 @@
 //React
 import React from 'react'
 //Components
-import PostCard from './PostCard'
+
 
 const UserPosts = props => {
   return (
