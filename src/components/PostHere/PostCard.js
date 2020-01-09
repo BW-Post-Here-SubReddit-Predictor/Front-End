@@ -1,19 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { savingPosts, deletePost, editPost } from '../../redux/actions'
 import { connect } from 'react-redux'
 import './PostCard.scss'
+import LoginSpinner from '../Home/LoginSpinner'
+
 const PostCardContainer = Styled.div`
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px;
     background-color: white;
-    border: 1px solid #FB2D08;
-    margin-top: 20px;
+    width: 800px;
 `;
+
+const PostCardTitleContainer = Styled.div`
+    display: flex;
+    margin-bottom: 5px;
+`;
+
+const PostCardIcon = Styled.div`
+    font-family: redditFont;
+    font-size: 30px;
+    color: #FB2D08;
+`;
+
+const PostCardTitle = Styled.div`
+    font-size: 20px;
+    color: #FB2D08;
+    padding-left: 10px;
+`;
+
+const PostCardBody = Styled.div`
+    min-height: 100px;
+    padding: 5px;
+    border-radius 4px;
+    border: 1px solid #FB2D08;
+    margin-bottom: 10px;
+`;
+
+const PostCardSectionHeader = Styled.div`
+    background-color black;
+    color: white;
+    padding: 5px;
+`;
+
 const PostCardSection = Styled.div`
-    border-bottom: 1px solid #FB2D08;
+    border-left: 1px solid black;
+    border-right 1px solid black;
+    border-bottom: 1px solid black;
     padding: 5px;
     line-height: 30px;
 `;
+
 const CardButton = Styled.button`
     box-sizing: border-box;
     background-color: #0067B8;
@@ -30,7 +70,9 @@ const CardButtonContainer = Styled.div`
     justify-content: flex-end;
     margin-top: 10px;
 `;
-const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
+
+const PostCard = ({ item, savingPosts, deletePost, editPost, storeIsSaving, storeIsDeleting, storeIsEditing }) => {
+
     // component needs to expect id of a post that has yet to be assigned one
     // id should be conditionally passed in if PostCard is rendered from SavedPosts
     // SavedPosts get should retrieve object with id data
@@ -41,24 +83,41 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
         title: item.title,
         post: item.post
     })
+    // local spinner state to identify card
+    const [isSavingPost, setIsSavingPost] = useState(false)
+    const [isEditingPost, setIsEditingPost] = useState(false)
+    const [isDeletingPost, setIsDeletingPost] = useState(false)
 
+    useEffect(() => {
+        // reset state logic after req fulfillment
+        if(!storeIsSaving) {
+            setIsSavingPost(false)
+        }
+        if(!storeIsDeleting) {
+            setIsDeletingPost(false)
+        }
+        if(!storeIsEditing) {
+            setIsEditingPost(false)
+        }
+    }, [storeIsSaving, storeIsDeleting, storeIsEditing])
 
     const handleSavePost = ev => {
+        setIsSavingPost(true)
         console.log('called save post to backend')
         const saveItem = {
             post: item.post,
             title: item.title,
             subreddit: item.subreddits[0].name,
             user_id: Number(item.user_id)
-
-
         };
         savingPosts(saveItem) // item passed in needs to have the right structure
     }
     const handleDelete = ev => {
+        setIsDeletingPost(true)
         deletePost(item.id)
     }
     const handleEdit = ev => {
+        setIsEditingPost(true)
         setModal(!modal)
         ev.stopPropagation()
     }
@@ -76,13 +135,20 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
             post: modalInput.post
         }
         editPost(post)
+        setModal(false)
     }
     return (
         <>
         {/* card */}
         <PostCardContainer>
-            <PostCardSection>{item.title}</PostCardSection>
-            <PostCardSection>{item.post}</PostCardSection>
+            <PostCardTitleContainer>
+                <PostCardIcon>&#xF13A;</PostCardIcon>
+                <PostCardTitle>{item.title}</PostCardTitle>
+            </PostCardTitleContainer>
+
+            <PostCardBody>{item.post}</PostCardBody>
+            
+            <PostCardSectionHeader>Suggested SubReddits</PostCardSectionHeader>
             <PostCardSection>
                 {
                     history.location.pathname === '/Savedposts' ? 
@@ -101,22 +167,68 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
 
                 }
             </PostCardSection>
+            <CardButtonContainer>
+                {
+                    history.location.pathname === '/Feed' ?
+                        (<CardButton onClick={handleSavePost}>Save</CardButton>)
+                        :
+                        null
+                }
+                {
+                    history.location.pathname === '/Savedposts' && Number(item.user_id) === Number(localStorage.getItem('userId')) ?
+                        (
+                            <>
+                                <CardButton onClick={handleDelete}>Delete</CardButton>
+                                <CardButton onClick={handleEdit}>Edit</CardButton>
+                            </>
+                        )
+                        :
+                        null
+                }
+            </CardButtonContainer>
         </PostCardContainer>
+
+        {/* save button */}
         <CardButtonContainer>
+            {
+                storeIsSaving && isSavingPost ?
+                    (<LoginSpinner />)
+                    :
+                    null
+            }
             {
                 history.location.pathname === '/Feed' ?
                     (<CardButton onClick={handleSavePost}>Save</CardButton>)
                     :
                     null
             }
+        </CardButtonContainer>
+        {/* delete button */}
+        <CardButtonContainer>
+            {
+                storeIsDeleting && isDeletingPost ?
+                    (<LoginSpinner />)
+                    :
+                    null
+            }
             {
                 history.location.pathname === '/Savedposts' && Number(item.user_id) === Number(localStorage.getItem('userId')) ?
-                    (
-                        <>
-                            <CardButton onClick={handleDelete}>Delete</CardButton>
-                            <CardButton onClick={handleEdit}>Edit</CardButton>
-                        </>
-                    )
+                    (<CardButton onClick={handleDelete}>Delete</CardButton>)
+                    :
+                    null
+            }
+        </CardButtonContainer>
+        {/* edit button */}
+        <CardButtonContainer>
+            {
+                storeIsEditing && isEditingPost ?
+                    (<LoginSpinner />)
+                    :
+                    null
+            }
+            {
+                history.location.pathname === '/Savedposts' && Number(item.user_id) === Number(localStorage.getItem('userId')) ?
+                    (<CardButton onClick={handleEdit}>Edit</CardButton>)
                     :
                     null
             }
@@ -147,8 +259,12 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
         }
         </>);
 }
-const mapStateToProps = state => {
-    return {}
+const mapStateToProps = ({ serverReducer }) => {
+    return {
+        storeIsSaving: serverReducer.isPostingNewSavedPost,
+        storeIsDeleting: serverReducer.isDeletingPost,
+        storeIsEditing: serverReducer.isEditingPost
+    }
 }
 export default connect(mapStateToProps, {
     savingPosts,

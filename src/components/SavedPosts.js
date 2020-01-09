@@ -1,35 +1,28 @@
 //React
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import Styled from 'styled-components';
 //Components
 import PostCard from './PostHere/PostCard'
 //Actions
 import { getAllPosts, getUserPosts } from '../redux/actions'
 import { connect } from 'react-redux'; 
 
+const SavedPostsContainer = Styled.div`
+    margin: 0 auto;
+`;
+
 const SavedPosts = props => {
   // get req to server to retrieve SAVED posts (with id)
   useEffect(() => {
     props.getUserPosts(localStorage.getItem('userId'))
-    // it's not working yet because we need a link to not have to refresh page
-    // axios
-    // .get(`/api/posts/${userID}/user`)
-    // .then(res => {
-    //   getUserPosts(res.data);
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // })
   },[])
 
-  // replace dummyArray with props.userPosts once backend data comes through
-
   return (
-    <div>
+    <SavedPostsContainer>
       {props.userPosts.map((item, index) => (
         <PostCard key={index} item={item} />
       ))}
-    </div>
+    </SavedPostsContainer>
   )
 }
 
