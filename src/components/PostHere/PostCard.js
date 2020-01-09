@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { savingPosts, deletePost, editPost } from '../../redux/actions'
 import { connect } from 'react-redux'
 import './PostCard.scss'
+import LoginSpinner from '../Home/LoginSpinner'
 
 const PostCardContainer = Styled.div`
     border: 1px solid black;
@@ -70,7 +71,8 @@ const CardButtonContainer = Styled.div`
     margin-top: 10px;
 `;
 
-const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
+const PostCard = ({ item, savingPosts, deletePost, editPost, storeIsSaving, storeIsDeleting, storeIsEditing }) => {
+
     // component needs to expect id of a post that has yet to be assigned one
     // id should be conditionally passed in if PostCard is rendered from SavedPosts
     // SavedPosts get should retrieve object with id data
@@ -81,24 +83,41 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
         title: item.title,
         post: item.post
     })
+    // local spinner state to identify card
+    const [isSavingPost, setIsSavingPost] = useState(false)
+    const [isEditingPost, setIsEditingPost] = useState(false)
+    const [isDeletingPost, setIsDeletingPost] = useState(false)
 
+    useEffect(() => {
+        // reset state logic after req fulfillment
+        if(!storeIsSaving) {
+            setIsSavingPost(false)
+        }
+        if(!storeIsDeleting) {
+            setIsDeletingPost(false)
+        }
+        if(!storeIsEditing) {
+            setIsEditingPost(false)
+        }
+    }, [storeIsSaving, storeIsDeleting, storeIsEditing])
 
     const handleSavePost = ev => {
+        setIsSavingPost(true)
         console.log('called save post to backend')
         const saveItem = {
             post: item.post,
             title: item.title,
             subreddit: item.subreddits[0].name,
             user_id: Number(item.user_id)
-
-
         };
         savingPosts(saveItem) // item passed in needs to have the right structure
     }
     const handleDelete = ev => {
+        setIsDeletingPost(true)
         deletePost(item.id)
     }
     const handleEdit = ev => {
+        setIsEditingPost(true)
         setModal(!modal)
         ev.stopPropagation()
     }
@@ -116,6 +135,7 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
             post: modalInput.post
         }
         editPost(post)
+        setModal(false)
     }
     return (
         <>
@@ -168,6 +188,52 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
             </CardButtonContainer>
         </PostCardContainer>
 
+        {/* save button */}
+        <CardButtonContainer>
+            {
+                storeIsSaving && isSavingPost ?
+                    (<LoginSpinner />)
+                    :
+                    null
+            }
+            {
+                history.location.pathname === '/Feed' ?
+                    (<CardButton onClick={handleSavePost}>Save</CardButton>)
+                    :
+                    null
+            }
+        </CardButtonContainer>
+        {/* delete button */}
+        <CardButtonContainer>
+            {
+                storeIsDeleting && isDeletingPost ?
+                    (<LoginSpinner />)
+                    :
+                    null
+            }
+            {
+                history.location.pathname === '/Savedposts' && Number(item.user_id) === Number(localStorage.getItem('userId')) ?
+                    (<CardButton onClick={handleDelete}>Delete</CardButton>)
+                    :
+                    null
+            }
+        </CardButtonContainer>
+        {/* edit button */}
+        <CardButtonContainer>
+            {
+                storeIsEditing && isEditingPost ?
+                    (<LoginSpinner />)
+                    :
+                    null
+            }
+            {
+                history.location.pathname === '/Savedposts' && Number(item.user_id) === Number(localStorage.getItem('userId')) ?
+                    (<CardButton onClick={handleEdit}>Edit</CardButton>)
+                    :
+                    null
+            }
+        </CardButtonContainer>
+    
         {/* modal */}
         {
             modal &&         
@@ -193,8 +259,12 @@ const PostCard = ({ item, savingPosts, id, deletePost, editPost }) => {
         }
         </>);
 }
-const mapStateToProps = state => {
-    return {}
+const mapStateToProps = ({ serverReducer }) => {
+    return {
+        storeIsSaving: serverReducer.isPostingNewSavedPost,
+        storeIsDeleting: serverReducer.isDeletingPost,
+        storeIsEditing: serverReducer.isEditingPost
+    }
 }
 export default connect(mapStateToProps, {
     savingPosts,
