@@ -5,7 +5,7 @@ PostHere SubReddit Predictor is an analytics tool that points users to subreddit
 
 ---
 
-###Development Team###
+### Development Team
 
 **FrontEnd[Landing Page]:**
 
