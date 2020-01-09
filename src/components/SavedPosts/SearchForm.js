@@ -1,9 +1,9 @@
 //React
 import React, { useEffect, useState } from 'react'
 //Components
-import PostCard from './PostHere/PostCard'
+import PostCard from '../PostHere/PostCard';
 //Actions
-import { getAllPosts, getUserPosts } from '../redux/actions'
+import { getAllPosts, getUserPosts } from '../../redux/actions/serverActions'
 import { connect } from 'react-redux'; 
 
 const SearchForm = props => {
@@ -13,7 +13,8 @@ const SearchForm = props => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    setPosts(props.getUserPosts(localStorage.getItem('userId')));
+    props.getUserPosts(localStorage.getItem('userId'));
+    setPosts(props.userPosts);
     const results = posts.filter( post => {
         return post.title.toLowerCase().includes(searchTerm.toLowerCase())
     });

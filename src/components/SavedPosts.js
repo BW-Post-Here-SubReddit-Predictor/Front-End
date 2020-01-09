@@ -1,8 +1,9 @@
 //React
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Styled from 'styled-components';
 //Components
 import PostCard from './PostHere/PostCard'
+import SearchForm from './SavedPosts/SearchForm';
 //Actions
 import { getAllPosts, getUserPosts } from '../redux/actions'
 import { connect } from 'react-redux'; 
@@ -19,11 +20,14 @@ const SavedPosts = props => {
   },[])
 
   return (
+    <>
+    <SearchForm />
     <SavedPostsContainer>
       {props.userPosts.map((item, index) => (
         <PostCard key={index} item={item} />
       ))}
     </SavedPostsContainer>
+    </>
   )
 }
 
