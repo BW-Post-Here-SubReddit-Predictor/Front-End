@@ -69,7 +69,7 @@ export const editPost = (postToEdit) => dispatch => {
 
   console.log(postToEdit, 'put object shape')
   console.log(post, title, subreddit, 'what does it look like')
-  axiosWithAuth().put(`/posts/${postToEdit.id}`, newPost)
+  axiosWithAuth().put(`/posts/${postToEdit.id}/`, newPost)
     .then( res => {
       console.log(res, 'put response')
       dispatch({ type: constants.EDIT_POST, payload: postToEdit })

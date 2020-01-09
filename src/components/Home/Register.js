@@ -4,6 +4,7 @@ import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 // import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import LogoHeader from "./LogoHeader";
+import LoginSpinner from './LoginSpinner'
 
 const StyledTextInput = Styled.input`
     border-left-width: 0px;
@@ -139,6 +140,9 @@ const Register = (props) => {
                     </a>
                 </div>
                 <FormButtonContainer>
+                    {
+                        isRegistering && <LoginSpinner />
+                    }
                     <FormButton>Register</FormButton>
                 </FormButtonContainer>
             </form>

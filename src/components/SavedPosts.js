@@ -1,11 +1,16 @@
 //React
 import React, { useEffect, useState } from 'react'
+import Styled from 'styled-components';
 //Components
 import PostCard from './PostHere/PostCard'
 import SearchForm from '../components/SavedPosts/SearchForm';
 //Actions
 import { getAllPosts, getUserPosts } from '../redux/actions'
 import { connect } from 'react-redux'; 
+
+const SavedPostsContainer = Styled.div`
+    margin: 0 auto;
+`;
 
 const SavedPosts = props => {
   // get req to server to retrieve SAVED posts (with id)
@@ -15,14 +20,11 @@ const SavedPosts = props => {
   },[])
 
   return (
-    <section>
-      <SearchForm />
-      <div>
-        {props.userPosts.map((item, index) => (
-            <PostCard key={index} item={item} />
-        ))}
-      </div>
-    </section>
+    <SavedPostsContainer>
+      {props.userPosts.map((item, index) => (
+        <PostCard key={index} item={item} />
+      ))}
+    </SavedPostsContainer>
   )
 }
 
