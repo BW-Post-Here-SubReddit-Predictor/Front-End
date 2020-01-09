@@ -169,6 +169,26 @@ const PostCard = ({ item, savingPosts, deletePost, editPost, storeIsSaving, stor
             </PostCardSection>
             <CardButtonContainer>
                 {
+                    storeIsSaving && isSavingPost ?
+                        (<LoginSpinner />)
+                        :
+                        null
+                }
+                {
+                    storeIsDeleting && isDeletingPost ?
+                        (<LoginSpinner />)
+                        :
+                        null
+                }
+                {
+                storeIsEditing && isEditingPost ?
+                    (<LoginSpinner />)
+                    :
+                    null
+                }
+
+
+                {
                     history.location.pathname === '/Feed' ?
                         (<CardButton onClick={handleSavePost}>Save</CardButton>)
                         :
@@ -187,52 +207,6 @@ const PostCard = ({ item, savingPosts, deletePost, editPost, storeIsSaving, stor
                 }
             </CardButtonContainer>
         </PostCardContainer>
-
-        {/* save button */}
-        <CardButtonContainer>
-            {
-                storeIsSaving && isSavingPost ?
-                    (<LoginSpinner />)
-                    :
-                    null
-            }
-            {
-                history.location.pathname === '/Feed' ?
-                    (<CardButton onClick={handleSavePost}>Save</CardButton>)
-                    :
-                    null
-            }
-        </CardButtonContainer>
-        {/* delete button */}
-        <CardButtonContainer>
-            {
-                storeIsDeleting && isDeletingPost ?
-                    (<LoginSpinner />)
-                    :
-                    null
-            }
-            {
-                history.location.pathname === '/Savedposts' && Number(item.user_id) === Number(localStorage.getItem('userId')) ?
-                    (<CardButton onClick={handleDelete}>Delete</CardButton>)
-                    :
-                    null
-            }
-        </CardButtonContainer>
-        {/* edit button */}
-        <CardButtonContainer>
-            {
-                storeIsEditing && isEditingPost ?
-                    (<LoginSpinner />)
-                    :
-                    null
-            }
-            {
-                history.location.pathname === '/Savedposts' && Number(item.user_id) === Number(localStorage.getItem('userId')) ?
-                    (<CardButton onClick={handleEdit}>Edit</CardButton>)
-                    :
-                    null
-            }
-        </CardButtonContainer>
     
         {/* modal */}
         {
