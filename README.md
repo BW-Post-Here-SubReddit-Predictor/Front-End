@@ -39,8 +39,8 @@ PostHere SubReddit Predictor is an analytics tool that points users to subreddit
 	
 ---
 	
-**Frameworks:** React
+Frameworks: React
 	React Dependencies: react-dom, react-router-dom, react-scripts
-**State Management:** Redux
+State Management: Redux
 	Redux Dependencies: react-redux, redux-thunk
-**Packages/Libraries:** Axios, Formik, Yup, Node-Sass, Styled-Components
+Packages/Libraries: Axios, Formik, Yup, Node-Sass, Styled-Components
