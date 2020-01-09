@@ -64,3 +64,42 @@ export const CardButtonContainer = Styled.div`
     justify-content: flex-end;
     margin-top: 10px;
 `;
+export const ModalBackground = Styled.div`
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+`;
+export const ModalEditForm = Styled.form`
+    margin: 0 auto;
+    width: 600px;
+    height: 205px;
+    background-color: white;
+    border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+`;
+
+export const ModalEditFormTextEdit = Styled.input`
+    color: #FB2D08;
+    outline: none;
+    font-size: 20px;
+`;
+
+export const ModalEditFormTextArea = Styled.textarea`
+    min-height: 100px;
+    padding: 5px;
+    border-radius 4px;
+    border: 1px solid #FB2D08;
+    margin-bottom: 0px;
+    outline: none;
+    margin-top: 5px;
+    font-size: 15px;
+    resize: none;
+`;
