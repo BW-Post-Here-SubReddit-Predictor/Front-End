@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Styled from 'styled-components';
 //Components
 import PostCard from './PostHere/PostCard'
-import SearchForm from '../components/SavedPosts/SearchForm';
 //Actions
 import { getAllPosts, getUserPosts } from '../redux/actions'
 import { connect } from 'react-redux'; 
