@@ -21,6 +21,7 @@ const TitleInput = Styled.input`
   border-style: none;
   padding: 5px;
   outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
 const TextInput = Styled.textarea`
@@ -34,6 +35,7 @@ const TextInput = Styled.textarea`
   border-radius 4px;
   border: 1px solid #FB2D08;
   outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
 const SubmitButton = Styled.button`
@@ -45,6 +47,10 @@ const SubmitButton = Styled.button`
     text-align: center;
     cursor: pointer;
     font-size: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    &:hover {
+        background-color:#ff6314;
+    }
 `;
 
 const ButtonContainer = Styled.div`

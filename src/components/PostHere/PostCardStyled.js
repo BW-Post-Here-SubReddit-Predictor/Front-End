@@ -1,7 +1,7 @@
 import Styled from 'styled-components'
 
 export const PostCardContainer = Styled.div`
-    border: 1px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 15px;
     border-radius: 8px;
     margin: 10px;
@@ -58,6 +58,10 @@ export const CardButton = Styled.button`
     cursor: pointer;
     font-size: 20px;
     margin-left: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    &:hover {
+        background-color:#ff6314;
+    }
 `;
 export const CardButtonContainer = Styled.div`
     display: flex;

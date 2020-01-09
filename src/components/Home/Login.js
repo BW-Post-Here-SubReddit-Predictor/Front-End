@@ -30,6 +30,8 @@ const FormContainer = Styled.div`
     padding-left: 50px;
     padding-right: 50px;
     text-align: left;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
 const FormHeader = Styled.div`
@@ -54,6 +56,9 @@ const FormButton = Styled.button`
     text-align: center;
     cursor: pointer;
     font-size: 20px;
+    &:hover {
+        background-color:#ff6314;
+    }
 `;
 
 const Login = (props) => {
