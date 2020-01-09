@@ -1,4 +1,4 @@
-![SubReddit Predictor]
+###### SubReddit Predictor
 Deployed Link : https://posthere-subreddit.herokuapp.com/
 
 PostHere SubReddit Predictor is an analytics tool that points users to subreddit channels with fed post data on the basis of similarity in type, likelihood to yield likes, and likelihood that user will like the subreddit. 
