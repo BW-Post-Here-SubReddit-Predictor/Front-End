@@ -35,14 +35,11 @@ const PostCard = ({ item, savingPosts, deletePost, editPost, storeIsSaving, stor
     // Not Saved - Saving - Saved
     const [isEditingPost, setIsEditingPost] = useState(false)
     const [isDeletingPost, setIsDeletingPost] = useState(false)
-    const [isSaved, setIsSaved] = useState(false)
 
     useEffect(() => {
         // reset state logic after req fulfillment
         if(!storeIsSaving && isSavingPost === 'Saving') {
-            console.log('is Saving Post Before', isSavingPost)
             setIsSavingPost('Saved')
-            console.log('is Saving Post After', isSavingPost)
         }
         if(!storeIsDeleting) {
             setIsDeletingPost(false)
@@ -50,6 +47,7 @@ const PostCard = ({ item, savingPosts, deletePost, editPost, storeIsSaving, stor
         if(!storeIsEditing) {
             setIsEditingPost(false)
         }
+        console.log('use effect on mount?')
     }, [storeIsSaving, storeIsDeleting, storeIsEditing])
 
     const handleSavePost = ev => {
