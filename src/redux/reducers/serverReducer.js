@@ -9,6 +9,8 @@ const initialState = {
   isPostingNewSavedPostError: false,
   //deleting post
   isDeletingPost: false,
+  //editing post
+  isEditingPost: false,
   //stored data
   userPosts: [],
   userId: "",
@@ -59,13 +61,6 @@ export const serverReducer = (state = initialState, { type, payload }) => {
         isDeletingPost: true
       }
     case constants.DELETE_POST:
-      // let index;
-      // for(let i = 0; i < state.userPosts.length; i++) {
-      //   if(state.userPosts[i].id === payload) {
-      //     index = i
-      //   }
-      // }
-
       const deleteIndex = state.userPosts.findIndex(e => {
         return e.id === payload
       })

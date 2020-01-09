@@ -45,3 +45,7 @@
 
   width: 100%; 
 }
+
+.crudBtn__spinner {
+  margin-right: 10px;
+}

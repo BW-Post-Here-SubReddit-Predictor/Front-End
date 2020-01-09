@@ -88,7 +88,7 @@ function PostForm(props) {
     e.preventDefault();
     setSpinner(true)
     axios
-      .post('https://btr-test.herokuapp.com/predict/', input) //
+      .post('https://posthere-subreddit-ml-api.herokuapp.com/predict/', input) //
       .then(res => {
         setSpinner(false)
         console.log(res);
@@ -132,19 +132,20 @@ function PostForm(props) {
             <List1 onClick={() => setIstrue(true)}>click # of subreddits</List1> 
             : 
             <>
-            <List onClick={}name="1">1</List>
-            <List onClick={}name="3">3</List>
-            <List onClick={}name="5">5</List>
-            <List onClick={}name="10">10</List>
-            <List onClick={}name = "20">20</List>
+              <List onClick={setCountHandler} name="1">1</List>
+              <List onClick={setCountHandler} name="3">3</List>
+              <List onClick={setCountHandler} name="5">5</List>
+              <List onClick={setCountHandler} name="10">10</List>
+              <List onClick={setCountHandler} name = "20">20</List>
             </>
             }
           </ul>
         </div>
-          {
-            !!spinner && <LoginSpinner />
-          }
+
         <ButtonContainer>
+          {
+            !!spinner && <LoginSpinner className='crudBtn__spinner' />
+          }
           <SubmitButton>Suggest</SubmitButton>
         </ButtonContainer>
       </form>
