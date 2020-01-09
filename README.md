@@ -31,11 +31,6 @@ PostHere SubReddit Predictor is an analytics tool that points users to subreddit
 	Tobias Reaper[Data Scientist]
 	Claudia Chajon[Data Scientist]
 	Mugil Choi[Data Scientist]
-
-**Use-Cases:**
-	Pop-up functionality on reddit for chronically off-topic users
-	Suggestions analytics
-	Like fishing
 	
 ---
 	
