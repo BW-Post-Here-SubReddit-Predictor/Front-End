@@ -8,11 +8,10 @@ const NavWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    grid-column: 1;
-    grid-row: 1 / 4;
+    height: 100%;
     background-color: #000000;
     color: #FFFFF;
+    position: fixed;
 `;
 
 const NavList = styled.ul`

@@ -15,8 +15,9 @@ import SideNav from './components/SideNav';
 
 function App() {
   return (
+    <>
+    <SideNav />
     <div className="App">
-      <SideNav />
       <Route exact path='/' component={Home} />
       
       <Route path='/Error' component={ErrorPage} />
@@ -24,6 +25,7 @@ function App() {
       <PrivateRoute exact path='/Feed' component={PostHere}/> 
       <PrivateRoute path='/Savedposts' component={SavedPosts} />
     </div>
+    </>
   );
 }
 
