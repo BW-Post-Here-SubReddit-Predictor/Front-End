@@ -1,5 +1,5 @@
 //React
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styled from 'styled-components';
 //Components
 import PostCard from './PostHere/PostCard'
@@ -35,9 +35,9 @@ const SavedPosts = props => {
         />
         <button type="submit">Search</button>
       </form>
-      {props.userPosts.filter(post =>
+      {props.userPosts.length !== 0 ? props.userPosts.filter(post =>
         searchTerm !== '' ? post.title.toLowerCase().includes(searchTerm.toLowerCase()) : true).map((item, index) =>
-        <PostCard key={index} item={item} /> : null )}
+      <PostCard key={index} item={item} />) : null }
     </SavedPostsContainer>
   )
 }
