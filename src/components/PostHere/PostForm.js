@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoginSpinner from '../Home/LoginSpinner';
 import { getUserPosts, savingPosts, saveDSResponse, setPost } from '../../redux/actions';
+import './PostForm.scss'
 
 const FormContainer = Styled.div`
   display: flex;
@@ -61,6 +62,7 @@ const ButtonContainer = Styled.div`
 
 
 const List = Styled.li`
+  
    list-style-type : none
    background-color: black;
    color: white; 
@@ -72,8 +74,8 @@ const List = Styled.li`
    &:hover {
 
     background-color: red
-    width: 14%
-    height: 7%;
+    transform: scale(1.1)
+
     padding-left: 80px;
     font-size: 1.35rem;
     
@@ -88,6 +90,7 @@ const List1 = Styled.li`
    width: 20%;
    height: 5%;
    margin: auto;
+   margin-bottom: 95px
    padding-left: 20px;
    &:hover {
 
@@ -97,6 +100,16 @@ const List1 = Styled.li`
   font-size: 1.4rem;
   border-radius: .35rem
    
+
+`
+const Ul = Styled.ul`
+  position: relative; 
+  display: flex;
+  top: 40px; 
+  left: 50px;
+  width: 75%
+  margin-bottom: 50px;
+  margin-top: -75px;
 
 `
 
@@ -122,8 +135,10 @@ function PostForm(props) {
     e.preventDefault()
     setInput({
       ...input, 
-      return_count: Number(e.target.name)
+      return_count: e.target.value
     })
+    console.log(e.target.value)
+    setIstrue(false)
   }
   const submitPost = e => {
     e.preventDefault();
@@ -146,7 +161,9 @@ function PostForm(props) {
 
   return (
     <FormContainer>
+      
       <form onSubmit={ submitPost } style={{width: "100%"}}>
+      
         <div>
           <TitleInput
             type='text'
@@ -168,29 +185,32 @@ function PostForm(props) {
           />
         </div>
         <div>
-          <ul> 
+          
+        </div>
+        <div className = "sudgestions__container">
+        <Ul> 
             {!istrue ? 
-            <List1 onClick={() => setIstrue(true)}>click # of subreddits</List1> 
+            <List1 onClick={() => setIstrue(true)}>click #{input.return_count} of subreddits</List1> 
             : 
             <>
 
-              <List onClick={setCountHandler} name="1">1</List>
-              <List onClick={setCountHandler} name="3">3</List>
-              <List onClick={setCountHandler} name="5">5</List>
-              <List onClick={setCountHandler} name="10">10</List>
-              <List onClick={setCountHandler} name="20">20</List>
+              <List onClick={setCountHandler} value={1}>1</List>
+            <List onClick={setCountHandler} value={2}>2</List>
+              <List onClick={setCountHandler} value={3}>3</List>
+              <List onClick={setCountHandler} value={4}>4</List>
+            <List onClick={setCountHandler} value={5}>5</List>
 
             </>
             }
-          </ul>
-        </div>
-
+        </Ul>
         <ButtonContainer>
           {
             !!spinner && <LoginSpinner className='crudBtn__spinner' />
           }
           <SubmitButton>Suggest</SubmitButton>
+          
         </ButtonContainer>
+        </div>
       </form>
     </FormContainer>
   )
