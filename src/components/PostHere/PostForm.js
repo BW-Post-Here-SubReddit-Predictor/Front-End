@@ -52,24 +52,48 @@ const ButtonContainer = Styled.div`
     justify-content: flex-end;
     margin-top: 10px;
 `;
+
+
 const List = Styled.li`
    list-style-type : none
-   background-color: white; 
+   background-color: black;
+   color: white; 
    width: 12%;
    height: 5%;
    margin: auto;
    padding-left: 60px;
+   border-radius: .35rem
+   &:hover {
+
+    background-color: red
+    width: 14%
+    height: 7%;
+    padding-left: 80px;
+    font-size: 1.35rem;
+    
+  }
+
 
 `
 const List1 = Styled.li`
    list-style-type : none
-   background-color: white; 
+   background-color: black;
+   color: white;
    width: 20%;
    height: 5%;
    margin: auto;
    padding-left: 20px;
+   &:hover {
+
+    background-color: red
+    
+  }
+  font-size: 1.4rem;
+  border-radius: .35rem
+   
 
 `
+
 
 function PostForm(props) {
   const [input, setInput] = useState({
