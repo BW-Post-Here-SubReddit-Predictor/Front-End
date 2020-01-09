@@ -15,6 +15,12 @@ const TitleInput = Styled.input`
   box-sizing : border-box;
   width: 100%;
   font-size: 20px;
+  border: 1px solid darksmoke;
+  border-radius 4px;
+  margin-bottom: 5px;
+  border-style: none;
+  padding: 5px;
+  outline: none;
 `;
 
 const TextInput = Styled.textarea`
@@ -23,6 +29,11 @@ const TextInput = Styled.textarea`
   height: 200px;
   font-size: 18px;
   resize: none;
+  border-style: none;
+  padding: 5px;
+  border-radius 4px;
+  border: 1px solid #FB2D08;
+  outline: none;
 `;
 
 const SubmitButton = Styled.button`
@@ -92,7 +103,7 @@ function PostForm(props) {
         <div>
           <TextInput
             type='text' 
-            placeholder='Post here'
+            placeholder='Post Text'
             name='submission_text'
             value={input.post_body}
             onChange={changeHandler}
