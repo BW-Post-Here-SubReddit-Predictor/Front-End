@@ -45,3 +45,8 @@
 
   width: 100%; 
 }
+
+@font-face {
+  font-family: "redditFont";
+  src: url("fonts/redditFont.woff") format('woff');
+}
