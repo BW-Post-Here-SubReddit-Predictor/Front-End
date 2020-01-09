@@ -117,6 +117,10 @@ const PostCard = ({ item, savingPosts, deletePost, editPost, storeIsSaving, stor
         deletePost(item.id)
     }
     const handleEdit = ev => {
+        setModalInput({
+            title: item.title,
+            post: item.post
+        })
         setIsEditingPost(true)
         setModal(!modal)
         ev.stopPropagation()
@@ -181,10 +185,10 @@ const PostCard = ({ item, savingPosts, deletePost, editPost, storeIsSaving, stor
                         null
                 }
                 {
-                storeIsEditing && isEditingPost ?
-                    (<LoginSpinner />)
-                    :
-                    null
+                    storeIsEditing && isEditingPost ?
+                        (<LoginSpinner />)
+                        :
+                        null
                 }
 
 
