@@ -19,6 +19,7 @@ const NavList = styled.ul`
     width: 100%;
     padding-left: 0px;
     list-style: none;
+    margin-left: 30%;
 `;
 
 const NavListItem = styled.li`
@@ -48,6 +49,7 @@ const SideNav = () => {
         <NavWrapper>
             <NavList>
                 <Link to='/' style={{display:'flex', justifyContent:'center'}}><NavLogo /></Link>
+                <NavListItem style={{textDecoration: 'none', color:'white'}} to='/Feed'>Welcome!</NavListItem>
                 <NavListItem>
                     <Link style={{textDecoration: 'none', color:'white'}} to='/Feed'>Feed</Link>
                 </NavListItem>

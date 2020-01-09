@@ -78,4 +78,3 @@ export const editPost = (postToEdit) => dispatch => {
       console.log(err)
     })
 }
-
