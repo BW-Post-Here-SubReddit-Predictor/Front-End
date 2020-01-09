@@ -46,6 +46,8 @@
   width: 100%; 
 }
 
-.crudBtn__spinner {
-  margin-right: 10px;
+@font-face {
+  font-family: "redditFont";
+  src: url("fonts/redditFont.woff") format('woff');
 }
+
