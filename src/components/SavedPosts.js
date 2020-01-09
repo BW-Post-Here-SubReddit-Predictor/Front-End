@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 import Styled from 'styled-components';
 //Components
 import PostCard from './PostHere/PostCard'
-import SearchForm from './SavedPosts/SearchForm';
 //Actions
 import { getAllPosts, getUserPosts } from '../redux/actions'
 import { connect } from 'react-redux'; 
@@ -14,20 +13,32 @@ const SavedPostsContainer = Styled.div`
 
 const SavedPosts = props => {
   // get req to server to retrieve SAVED posts (with id)
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     props.getUserPosts(localStorage.getItem('userId'))
   },[])
 
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+    console.log(setSearchTerm);
+  };
+
   return (
-    <>
-    <SearchForm />
     <SavedPostsContainer>
-      {props.userPosts.map((item, index) => (
-        <PostCard key={index} item={item} />
-      ))}
+      <form>
+        <input 
+          type="text" 
+          name="search" 
+          onChange={handleChange}
+          value={searchTerm} 
+        />
+        <button type="submit">Search</button>
+      </form>
+      {props.userPosts.filter(post =>
+        searchTerm !== '' ? post.title.toLowerCase().includes(searchTerm.toLowerCase()) : true).map((item, index) =>
+        <PostCard key={index} item={item} /> : null )}
     </SavedPostsContainer>
-    </>
   )
 }
 
