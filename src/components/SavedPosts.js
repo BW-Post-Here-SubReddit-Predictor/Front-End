@@ -33,7 +33,6 @@ const SavedPosts = props => {
           onChange={handleChange}
           value={searchTerm} 
         />
-        <button type="submit">Search</button>
       </form>
       {props.userPosts.length !== 0 ? props.userPosts.filter(post =>
         searchTerm !== '' ? post.title.toLowerCase().includes(searchTerm.toLowerCase()) : true).map((item, index) =>
