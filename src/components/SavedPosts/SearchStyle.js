@@ -4,6 +4,7 @@ import Styled from 'styled-components'
 export const Form = Styled.form`
   display: flex;
   align-items: center;
+  margin-top: 2rem;
   justify-content: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background-color: white;
