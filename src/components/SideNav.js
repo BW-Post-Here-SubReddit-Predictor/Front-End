@@ -11,7 +11,6 @@ const NavWrapper = styled.div`
     height: 100%;
     background-color: #000000;
     color: #FFFFF;
-    position: fixed;
 `;
 
 const NavList = styled.ul`
