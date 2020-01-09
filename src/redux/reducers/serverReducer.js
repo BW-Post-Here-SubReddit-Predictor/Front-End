@@ -46,7 +46,6 @@ export const serverReducer = (state = initialState, { type, payload }) => {
     case constants.SAVED_NEW_POST:
       return {
         ...state,
-        userPosts: [...state.userPosts, payload],
         isPostingNewSavedPost: false
       }
     case constants.ERROR_SAVING_NEW_POST:
