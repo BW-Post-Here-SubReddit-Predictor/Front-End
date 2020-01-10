@@ -60,7 +60,7 @@ export const CardButton = Styled.button`
     margin-left: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     &:hover {
-        background-color:#ff6314;
+        background-color: #FB2D08;
     }
 `;
 export const CardButtonContainer = Styled.div`
