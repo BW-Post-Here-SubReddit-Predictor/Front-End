@@ -34,7 +34,9 @@ function PostForm(props) {
     e.preventDefault();
     setSpinner(true)
     axios
-      .post('https://posthere-subreddit-ml-api.herokuapp.com/predict/', input) //
+    // https://subwisepost.herokuapp.com/
+    // https://posthere-subreddit-ml-api.herokuapp.com/predict/
+      .post('https://subwisepost.herokuapp.com/', input) //
       .then(res => {
         setSpinner(false)
         console.log(res, 'post response');
