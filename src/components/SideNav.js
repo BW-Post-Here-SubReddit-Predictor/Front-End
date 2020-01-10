@@ -12,7 +12,7 @@ const NavWrapper = styled.div`
     grid-column: 1;
     grid-row: 1 / 4;
     background-color: #000000;
-    color: #FFFFF;
+    color: #FFFFFF;
 `;
 
 const NavList = styled.ul`
@@ -49,7 +49,11 @@ const SideNav = () => {
         <NavWrapper>
             <NavList>
                 <Link to='/' style={{display:'flex', justifyContent:'center'}}><NavLogo /></Link>
-                <NavListItem style={{textDecoration: 'none', color:'white'}} to='/Feed'>Welcome!</NavListItem>
+                <NavListItem style={{textDecoration: 'none', color:'white'}} to='/Feed'>
+
+                    <a style={{textDecoration: 'none', color:'white'}} href='https://postithere.netlify.com/'>Welcome!</a>
+                
+                </NavListItem>
                 <NavListItem>
                     <Link style={{textDecoration: 'none', color:'white'}} to='/Feed'>Feed</Link>
                 </NavListItem>

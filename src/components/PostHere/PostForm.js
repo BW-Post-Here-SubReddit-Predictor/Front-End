@@ -37,10 +37,10 @@ function PostForm(props) {
       .post('https://posthere-subreddit-ml-api.herokuapp.com/predict/', input) //
       .then(res => {
         setSpinner(false)
-        console.log(res);
+        console.log(res, 'post response');
         props.saveDSResponse(res.data.predictions)
         props.setPost(input)
-        console.log(res)
+
 
       })
       .catch(err => {
