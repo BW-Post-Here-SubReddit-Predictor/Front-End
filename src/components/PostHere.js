@@ -16,7 +16,7 @@ const PostHere = () => {
     return (
         <PostHereContainer>
             <div>
-                <h2>Create your post and the SubReddit Predictor will suggest subreddits</h2>
+                <h2 style={{ textAlign: "center" }}>Create your post and the SubReddit Predictor make suggestions</h2>
                 <PostForm />
                 <PostResponse />
             </div>
