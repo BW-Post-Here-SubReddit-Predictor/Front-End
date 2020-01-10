@@ -45,6 +45,10 @@ const NavListItem = styled.li`
 
 
 const SideNav = () => {
+
+    const handleLogout = ev => {
+        localStorage.removeItem('token')
+    }
     return (
         <NavWrapper>
             <NavList>
@@ -62,6 +66,9 @@ const SideNav = () => {
                 </NavListItem>
                 <NavListItem>
                     <a style={{textDecoration: 'none', color:'white'}} target='_blank' href='http://reddit.com/r/'>reddit.com</a>
+                </NavListItem>
+                <NavListItem>
+                    <Link to='/' style={{textDecoration: 'none', color:'white'}} onClick={handleLogout}>Logout</Link>
                 </NavListItem>
             </NavList>
         </NavWrapper>
